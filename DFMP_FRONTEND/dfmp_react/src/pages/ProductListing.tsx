@@ -1,5 +1,5 @@
 import Navbar from "../components/Navbar";
-import Sidebar from "../components/Sidebar";
+// import Sidebar from "../components/Sidebar";
 import ProductCard from "../components/ProductCard";
 import { useEffect, useState } from "react";
 import axios from "axios";
@@ -10,14 +10,14 @@ export default function Shop() {
 
   const [products, setProducts] = useState<Product[]>([]);
   const [currentPage, setCurrentPage] = useState(1);
-  const [totalPerPage, setTotalPerPage] = useState(8);
+  const totalPerPage = 8;
   const firstIndex = (currentPage -1) * totalPerPage;
   const lastIndex = firstIndex + totalPerPage;
   const numOfPages = Math.ceil(products.length / totalPerPage);
   const pageNumbers = Array.from({ length: numOfPages }, (_, i) => i + 1);
 
-  const [loading, setLoading] = useState(true);
-  const [error, setError] = useState("");
+  // const [loading, setLoading] = useState(true);
+  // const [error, setError] = useState("");
   const API_URL = import.meta.env.VITE_API_URL;
 
   useEffect(() => {
@@ -26,9 +26,9 @@ export default function Shop() {
           const response = await axios.get(`${API_URL}/products`);
           setProducts(response.data);
         } catch (err) {
-          setError("Failed to load featured products");
+          // setError("Failed to load featured products");
         } finally {
-          setLoading(false);
+          // setLoading(false);
         }
       };
   
@@ -36,18 +36,18 @@ export default function Shop() {
     }, []);
 
 
-  const fetchProducts = async (filters: { categories: string[], sort: string }) => {
-   const query = new URLSearchParams();
+//   const fetchProducts = async (filters: { categories: string[], sort: string }) => {
+//    const query = new URLSearchParams();
 
-   if (filters.categories.length > 0)
-      query.append("category", filters.categories.join(","));
+//    if (filters.categories.length > 0)
+//       query.append("category", filters.categories.join(","));
 
-   if (filters.sort !== "default")
-      query.append("sort", filters.sort);
+//    if (filters.sort !== "default")
+//       query.append("sort", filters.sort);
 
-   const res = await axios.get(`${API_URL}/products?${query.toString()}`);
-   setProducts(res.data);
-};
+//    const res = await axios.get(`${API_URL}/products?${query.toString()}`);
+//    setProducts(res.data);
+// };
 
 
   return (

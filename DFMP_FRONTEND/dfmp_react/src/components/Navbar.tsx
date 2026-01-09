@@ -1,14 +1,14 @@
 import { Link, useLocation, useNavigate } from "react-router-dom";
-import { HiOutlineShoppingBag, HiOutlineShoppingCart, HiOutlineHome, HiOutlineUser } from "react-icons/hi";
-import { MdLogin, MdLogout, MdEdit, MdDelete, MdPerson, MdAdd, MdAddCircle, MdAddAPhoto } from "react-icons/md";
-import { useState } from "react";
-import { FiLogIn, FiLogOut, FiEdit, FiTrash2, FiUser, FiPlus } from "react-icons/fi";
-import { FaEdit, FaTrash, FaUser, FaPlus, FaPlusSquare } from "react-icons/fa";
+import { HiOutlineShoppingBag, HiOutlineShoppingCart, HiOutlineHome } from "react-icons/hi";
+// import { MdLogin, MdLogout, MdEdit, MdDelete, MdPerson, MdAdd, MdAddCircle, MdAddAPhoto } from "react-icons/md";
+// import { useState } from "react";
+import { FiLogIn, FiLogOut } from "react-icons/fi";
+// import { FaEdit, FaTrash, FaUser, FaPlus, FaPlusSquare } from "react-icons/fa";
 
 export default function Navbar() {
   const location = useLocation();
   const navigate = useNavigate();
-  const [loggedIn, setLoggedIn] = useState(sessionStorage.getItem("userId"));
+  const loggedIn= sessionStorage.getItem("userId");
 
   const handleLogOut = async () => {
       sessionStorage.clear();

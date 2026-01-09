@@ -1,4 +1,4 @@
-import { Link } from "react-router-dom";
+// import { Link } from "react-router-dom";
 import Navbar from "./Navbar";
 import { useState } from "react";
 import { useNavigate, useLocation } from "react-router-dom";
@@ -9,8 +9,8 @@ import type { CartItem } from "../models/modelTypes";
 export default function Checkout(){
     const navigate = useNavigate();
     const {state} = useLocation();
-    const [error, setError] = useState<string | null>(null);
-    const [success, setSuccess] = useState<Boolean>(false);
+    // const [error, setError] = useState<string | null>(null);
+    // const [success, setSuccess] = useState<Boolean>(false);
     const API_URL = import.meta.env.VITE_API_URL;
 
     const cartItems: CartItem[] = state?.cartItems;
@@ -25,7 +25,7 @@ export default function Checkout(){
     });
     const [shippingDetailsId, setShippingDetailsId] = useState<number>(0);
 
-    const [orderId, setOrderId] = useState<number>(0);
+    // const [orderId, setOrderId] = useState<number>(0);
 
     const [loading, setLoading] = useState(false);
 
@@ -36,7 +36,7 @@ export default function Checkout(){
 
     const handleShippingDetailsSubmit = async (e: React.FormEvent) => {
         e.preventDefault();
-        setError(null);
+        // setError(null);
 
     try {
 
@@ -46,7 +46,7 @@ export default function Checkout(){
         },
         });
         setShippingDetailsId(response.data.id);
-        setSuccess(true);
+        // setSuccess(true);
 
         setTimeout(() => {
             setShippingDetails({
@@ -107,7 +107,7 @@ export default function Checkout(){
     const cartId = cartItems[0].cart.id;
     console.log(cartId);
     const newOrderId = await createOrder();
-    setOrderId(newOrderId);
+    // setOrderId(newOrderId);
     await createOrderItems(newOrderId);
     //await axios.delete(`http://localhost:8080/cart-items/${cartId}`)
     navigate("/customer")

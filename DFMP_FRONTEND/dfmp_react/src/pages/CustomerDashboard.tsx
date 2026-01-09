@@ -1,25 +1,25 @@
 import Navbar from "../components/Navbar";
-import Footer from "../components/Footer";
+// import Footer from "../components/Footer";
 import Sidebar from "../components/Sidebar";
 import { useEffect, useState } from "react";
 import axios from "axios";
 import type { Order, OrderItem } from "../models/modelTypes";
 import { useLocation } from "react-router-dom";
 
-const recentOrders = [
-  { id: "12345", product: "Tilapia", status: "Delivered" },
-  { id: "12346", product: "Crab", status: "In Transit" },
-  { id: "12347", product: "Lobster", status: "Pending" },
-];
+// const recentOrders = [
+//   { id: "12345", product: "Tilapia", status: "Delivered" },
+//   { id: "12346", product: "Crab", status: "In Transit" },
+//   { id: "12347", product: "Lobster", status: "Pending" },
+// ];
 
 export default function CustomerDashboard() {
 
   const [partToDisplay, setpartToDisplay] = useState("Dashboard");
     const [orders, setOrder] = useState<Order[]>([]);
     const [orderItem, setOrderItem] =useState<OrderItem[]>([]);
-    const [customer, setCustomer] = useState(sessionStorage.getItem("userId"));
-    const [loading, setLoading] = useState(true);
-    const [error, setError] = useState("");
+    const customer= sessionStorage.getItem("userId");
+    // const [loading, setLoading] = useState(true);
+    // const [error, setError] = useState("");
     const location = useLocation();
     const API_URL = import.meta.env.VITE_API_URL;
 
@@ -30,7 +30,7 @@ export default function CustomerDashboard() {
 
       const fetchOrdersAndItems = async () => {
         try {
-          setLoading(true);
+          // setLoading(true);
 
           const ordersResponse = await axios.post(
             `${API_URL}/order/customer`,
@@ -53,9 +53,9 @@ export default function CustomerDashboard() {
           setOrderItem(allOrderItems);
 
         } catch (err) {
-          setError("Failed to load orders");
+          // setError("Failed to load orders");
         } finally {
-          setLoading(false);
+          // setLoading(false);
         }
     };
 

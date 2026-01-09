@@ -15,9 +15,9 @@ export default function ProductDetail() {
 
   const { id } = useParams<{ id: string }>();
   const [product, setProduct] = useState<Product | null>(null);
-  const [loading, setLoading] = useState(true);
-  const [error, setError] = useState("");
-  const [customer, setCustomer] = useState(localStorage.getItem("userId"));
+  // const [loading, setLoading] = useState(true);
+  // const [error, setError] = useState("");
+  const customer = localStorage.getItem("userId");
   const [customerCart, setCustomerCart] = useState<number>(0);
   const API_URL = import.meta.env.VITE_API_URL;
 
@@ -34,9 +34,9 @@ export default function ProductDetail() {
           const response = await axios.post(`${API_URL}/carts/customer`, { id: Number(customer)});
           setCustomerCart(response.data.id);
       } catch (err) {
-        setError("Failed to load product details");
+        // setError("Failed to load product details");
       } finally {
-        setLoading(false);
+        // setLoading(false);
       }
     };
 

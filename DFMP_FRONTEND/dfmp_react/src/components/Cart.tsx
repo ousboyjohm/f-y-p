@@ -1,4 +1,4 @@
-import { Link, useNavigate } from "react-router-dom";
+import {  useNavigate } from "react-router-dom";
 import Navbar from "./Navbar";
 import axios from "axios";
 import { useState, useEffect } from "react";
@@ -9,10 +9,10 @@ import type { CartItem } from "../models/modelTypes";
 export default function Cart(){
 
     const navigate = useNavigate();
-    const [loading, setLoading] = useState(true);
-    const [error, setError] = useState("");
-    const [customer, setCustomer] = useState(sessionStorage.getItem("userId"));
-    const [customerCart, setCustomerCart] = useState<number>(0);
+    // const [loading, setLoading] = useState(true);
+    // const [error, setError] = useState("");
+    const customer= sessionStorage.getItem("userId");
+    // const [customerCart, setCustomerCart] = useState<number>(0);
     const [cartItems, setCartItems] = useState<CartItem[]>([]);
     const API_URL = import.meta.env.VITE_API_URL;
 
@@ -21,13 +21,13 @@ export default function Cart(){
         const fetchCustomerCart = async () => {
         try {
             const response1 = await axios.post(`${API_URL}/carts/customer`, { id: Number(customer)});
-            setCustomerCart(response1.data.id);
+            // setCustomerCart(response1.data.id);
             const response2 = await axios.post(`${API_URL}/cart-items/cart`, { id: response1.data.id});
             setCartItems(response2.data);
         } catch (err) {
-            setError("Failed to load featured products");
+            // setError("Failed to load featured products");
         } finally {
-            setLoading(false);
+            // setLoading(false);
         }
     };
 

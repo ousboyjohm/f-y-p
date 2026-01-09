@@ -11,8 +11,8 @@ import type { Product } from "../models/modelTypes";
 export default function LandingPage() {
 
   const [products, setProducts] = useState<Product[]>([]);
-  const [loading, setLoading] = useState(true);
-  const [error, setError] = useState("");
+  // const [loading, setLoading] = useState(true);
+  // const [error, setError] = useState("");
   const API_URL = import.meta.env.VITE_API_URL;
 
   useEffect(() => {
@@ -21,9 +21,9 @@ export default function LandingPage() {
         const response = await axios.get(`${API_URL}/products`);
         setProducts(response.data);
       } catch (err) {
-        setError("Failed to load featured products");
+        // setError("Failed to load featured products");
       } finally {
-        setLoading(false);
+        // setLoading(false);
       }
     };
 
@@ -38,12 +38,12 @@ export default function LandingPage() {
     { name: "Lobsters", img: "chad-montgomery-ULq-CC_Q7iY-unsplash.jpg" },
   ];
 
-  const featuredProducts = [
-    { id: "1", name: "Tilapia", price: 250, image: "chad-montgomery-ULq-CC_Q7iY-unsplash.jpg" },
-    { id: "2", name: "Crab", price: 500, image: "sebastien-devocelle-RnjSj-m6PSg-unsplash.jpg" },
-    { id: "3", name: "Lobster", price: 1200, image: "pexels-mali-229789.jpg" },
-    { id: "4", name: "Prawns", price: 400, image: "chad-montgomery-ULq-CC_Q7iY-unsplash.jpg" },
-];
+//   const featuredProducts = [
+//     { id: "1", name: "Tilapia", price: 250, image: "chad-montgomery-ULq-CC_Q7iY-unsplash.jpg" },
+//     { id: "2", name: "Crab", price: 500, image: "sebastien-devocelle-RnjSj-m6PSg-unsplash.jpg" },
+//     { id: "3", name: "Lobster", price: 1200, image: "pexels-mali-229789.jpg" },
+//     { id: "4", name: "Prawns", price: 400, image: "chad-montgomery-ULq-CC_Q7iY-unsplash.jpg" },
+// ];
   // const featuredProducts = products.slice(0, 5);
 
   const benefits = [

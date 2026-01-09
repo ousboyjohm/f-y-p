@@ -4,9 +4,9 @@ import Sidebar from "../components/Sidebar";
 import { useEffect, useState } from "react";
 import type { Product } from "../models/modelTypes";
 import axios from "axios";
-import { MdLogin, MdLogout, MdEdit, MdDelete, MdPerson, MdAdd, MdAddCircle, MdAddAPhoto } from "react-icons/md";
-import { FiLogIn, FiLogOut, FiEdit, FiTrash2, FiUser, FiPlus } from "react-icons/fi";
-import { FaEdit, FaTrash, FaUser, FaPlus, FaPlusSquare } from "react-icons/fa";
+// import { MdLogin, MdLogout, MdEdit, MdDelete, MdPerson, MdAdd, MdAddCircle, MdAddAPhoto } from "react-icons/md";
+import { FiEdit, FiTrash2 } from "react-icons/fi";
+// import { FaEdit, FaTrash, FaUser, FaPlus, FaPlusSquare } from "react-icons/fa";
 
 
 // const products = [
@@ -19,12 +19,12 @@ export default function SellerDashboard() {
 
   const pendingOrders = 5; 
   const monthlySales = 12000; 
-  const [loading, setLoading] = useState(true);
-  const [error, setError] = useState("");
+  // const [loading, setLoading] = useState(true);
+  // const [error, setError] = useState("");
   const [products, setProducts] = useState<Product[]>([]);
-  const [seller, setSeller] = useState(sessionStorage.getItem("userId"));
+  const seller = sessionStorage.getItem("userId");
   const [currentPage, setCurrentPage] = useState(1);
-  const [totalPerPage, setTotalPerPage] = useState(7);
+  const totalPerPage= 7;
   const firstIndex = (currentPage -1) * totalPerPage;
   const lastIndex = firstIndex + totalPerPage;
   const numOfPages = Math.ceil(products.length / totalPerPage);
@@ -38,9 +38,9 @@ export default function SellerDashboard() {
               const response = await axios.post(`${API_URL}/products/seller`, { id: Number(seller)});
               setProducts(response.data);
           } catch (err) {
-              setError("Failed to load featured products");
+              // setError("Failed to load featured products");
           } finally {
-              setLoading(false);
+              // setLoading(false);
           }
       };  
           fetchProducts();

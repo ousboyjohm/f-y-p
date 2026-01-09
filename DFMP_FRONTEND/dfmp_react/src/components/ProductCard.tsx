@@ -1,5 +1,5 @@
 import { Link } from "react-router-dom";
-import { useNavigate } from "react-router-dom";
+// import { useNavigate } from "react-router-dom";
 
 type ProductCardProps = {
   id: number;
@@ -9,7 +9,7 @@ type ProductCardProps = {
 };
 
 export default function ProductCard({ id, name, price, image }: ProductCardProps){
-        const navigate = useNavigate();
+        // const navigate = useNavigate();
 
     return (
         <div className="flex gap-4 flex-wrap">

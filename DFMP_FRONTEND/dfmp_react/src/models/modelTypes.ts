@@ -48,7 +48,7 @@ export interface ShippingDetails {
 export interface Order {
     id: number,
     orderStatus: string,
-    orderDate: Date,
+    orderDate: string,
     totalPrice: number,
     shippingAddress: string,
     customer: User
