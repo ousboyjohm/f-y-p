@@ -1,0 +1,41 @@
+@token = eyJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJkZm1wIiwic3ViIjoiZGlic29uIiwiYXV0aG9yaXRpZXMiOlsiQ1VTVE9NRVIiXSwidXNlcl9pZCI6MSwiZXhwIjoxNzU5NzY0MTI5fQ.AQNM3tmaFKGKcPl_4nE6owqz6_LzvHDdHtlekSrwIEg
+
+
+### Get all order items
+GET http://localhost:8080/order-items
+Authorization: Bearer {{token}}
+
+### Get order item by ID
+GET http://localhost:8080/order-items/1
+Authorization: Bearer {{token}}
+
+### Add new order item
+POST http://localhost:8080/order-items
+Content-Type: application/json
+Authorization: Bearer {{token}}
+
+{
+  "product": { "id": 3 },
+  "quantity": 1,
+  "priceAtPurchase": 100.00,
+  "order": { "id": 1 }
+}
+
+### Update order item
+PUT http://localhost:8080/order-items/1
+Content-Type: application/json
+Authorization: Bearer {{token}}
+
+{
+  "id": 1,
+  "product": { "id": 2 },
+  "quantity": 3,
+  "priceAtPurchase": 110.00,
+  "order": { "id": 1 }
+}
+
+### Delete order item
+DELETE http://localhost:8080/order-items/1
+Authorization: Bearer {{token}}
+
+

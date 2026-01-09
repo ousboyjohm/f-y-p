@@ -1,0 +1,48 @@
+@token = eyJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJkZm1wIiwic3ViIjoiZGlic29uIiwiYXV0aG9yaXRpZXMiOlsiQ1VTVE9NRVIiXSwidXNlcl9pZCI6MSwiZXhwIjoxNzU5NzYzNzMzfQ.4QlDj6ILln5P0y6VbhDvK7ccz_XlieegXydfYfo7Sqs
+
+
+### Get all cart items
+GET http://localhost:8080/cart-items
+Authorization: Bearer {{token}}
+
+### Get cart item by ID
+GET http://localhost:8080/cart-items/2
+Authorization: Bearer {{token}}
+
+### Get cart-items by Cart
+POST http://localhost:8080/cart-items/cart
+Content-Type: application/json
+Authorization: Bearer {{token}}
+
+{
+  "id": 3
+}
+
+### Add new cart item
+POST http://localhost:8080/cart-items
+Content-Type: application/json
+Authorization: Bearer {{token}}
+
+{
+  "cart": { "id": 1 },
+  "product": { "id": 3 },
+  "quantity": 4
+}
+
+### Update cart item
+PUT http://localhost:8080/cart-items/1
+Content-Type: application/json
+Authorization: Bearer {{token}}
+
+{
+  "id": 1,
+  "cart": { "id": 1 },
+  "product": { "id": 2 },
+  "quantity": 5
+}
+
+### Delete cart item
+DELETE http://localhost:8080/cart-items/1
+Authorization: Bearer {{token}}
+
+

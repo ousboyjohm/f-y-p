@@ -1,0 +1,38 @@
+
+@token = eyJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJkZm1wIiwic3ViIjoieXVzdWZAZGZtcC5jb20iLCJhdXRob3JpdGllcyI6WyJBRE1JTiJdLCJ1c2VyX2lkIjoxLCJleHAiOjE3NjY1MjM5MDR9.3yPlFt-d9uEcWjPnRiVtJeAircEZbvnTBpxOjr7pczc
+
+### Get all categories
+GET http://localhost:8080/categories
+Authorization: Bearer {{token}}
+
+### Get category by ID
+GET http://localhost:8080/categories/1
+Authorization: Bearer {{token}}
+
+### Add new category
+POST http://localhost:8080/categories
+Content-Type: application/json
+Authorization: Bearer {{token}}
+
+{
+  "name": "Electronics",
+  "description": "Electronic devices and accessories"
+}
+
+### Update category
+PUT http://localhost:8080/categories/1
+Content-Type: application/json
+Authorization: Bearer {{token}}
+
+{
+  "id": 1,
+  "name": "Updated Electronics",
+  "description": "Updated description"
+}
+
+### Delete category
+DELETE http://localhost:8080/categories/1
+Authorization: Bearer {{token}}
+
+
+

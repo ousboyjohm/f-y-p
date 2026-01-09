@@ -1,0 +1,63 @@
+@token = eyJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJkZm1wIiwic3ViIjoieXVzdWZAZGZtcC5jb20iLCJhdXRob3JpdGllcyI6WyJBRE1JTiJdLCJ1c2VyX2lkIjoxLCJleHAiOjE3NjY1MjQzOTh9.byMDjZ6To6RNKXscVZ5LAagd5RsiRMuamM3cjNiGpRM
+
+### Get all products
+GET http://localhost:8080/products
+Authorization: Bearer {{token}}
+
+### Get product by ID
+GET http://localhost:8080/products/3
+Authorization: Bearer {{token}}
+
+### Get product by Category
+GET http://localhost:8080/products/category
+Content-Type: application/json
+Authorization: Bearer {{token}}
+
+{
+  "id": 2
+}
+
+### Get product by User
+GET http://localhost:8080/products/seller
+Content-Type: application/json
+Authorization: Bearer {{token}}
+
+{
+   "id": 1 
+}
+
+### Add new seafood product
+POST http://localhost:8080/products
+Content-Type: application/json
+Authorization: Bearer {{token}}
+
+{
+  "name": "Lettuce",
+  "description": "Garden made lettuce",
+  "pricePerUnit": 100,
+  "stockQuantity": 15,
+  "imageUrl": "chad-montgomery-ULq-CC_Q7iY-unsplash.jpg",
+  "category": { "id": 3 },
+  "seller": { "id": 2 }
+}
+
+### Update seafood product
+PUT http://localhost:8080/products/1
+Content-Type: application/json
+Authorization: Bearer {{token}}
+
+{
+  "id": 1,
+  "name": "Fresh Norwegian Salmon",
+  "description": "Premium cut salmon from Norway, perfect for sushi and grilling.",
+  "pricePerUnit": 27.50,
+  "stockQuantity": 30,
+  "imageUrl": "http://example.com/images/norwegian-salmon.jpg",
+  "category": { "id": 2 },
+  "seller": { "id": 1 }
+}
+
+### Delete product
+DELETE http://localhost:8080/products/1
+Authorization: Bearer {{token}}
+

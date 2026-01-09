@@ -1,0 +1,42 @@
+
+@token = eyJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJkZm1wIiwic3ViIjoieXVzdWZAZGZtcC5jb20iLCJhdXRob3JpdGllcyI6WyJBRE1JTiJdLCJ1c2VyX2lkIjoxLCJleHAiOjE3NjY1MjM5MDR9.3yPlFt-d9uEcWjPnRiVtJeAircEZbvnTBpxOjr7pczc
+
+### Get all shipping-details
+GET http://localhost:8080/shipping-details
+Authorization: Bearer {{token}}
+
+### Get shipping-details by ID
+GET http://localhost:8080/shipping-details/1
+Authorization: Bearer {{token}}
+
+### Add new shipping-details
+POST http://localhost:8080/shipping-details
+Content-Type: application/json
+Authorization: Bearer {{token}}
+
+{
+  "address": "NewTown",
+  "phone_number": "3452641",
+  "city": "Brikama",
+  "postal_code": "8755"
+}
+
+### Update shipping-details
+PUT http://localhost:8080/shipping-details/1
+Content-Type: application/json
+Authorization: Bearer {{token}}
+
+{
+  "id": 1,
+  "address": "Albert",
+  "phone_number": "3452641",
+  "city": "Banjul",
+  "postal_code": "8865"
+}
+
+### Delete shipping-details
+DELETE http://localhost:8080/shipping-details/4
+Authorization: Bearer {{token}}
+
+
+

@@ -1,0 +1,41 @@
+@token = eyJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJkZm1wIiwic3ViIjoiZGlic29uIiwiYXV0aG9yaXRpZXMiOlsiQ1VTVE9NRVIiXSwidXNlcl9pZCI6MSwiZXhwIjoxNzU5NzY2NzYyfQ.orr7Qdz0dQslV8MXAJTE1UpeK1A8uHP_RQqG8rh3Y3Q
+
+### Get all orders
+GET http://localhost:8080/order
+Authorization: Bearer {{token}}
+
+### Get order by ID
+GET http://localhost:8080/order/3
+Authorization: Bearer {{token}}
+
+### Add new order
+POST http://localhost:8080/order
+Content-Type: application/json
+Authorization: Bearer {{token}}
+
+{
+  "orderStatus": "PENDING",
+  "orderDate": "2025-10-03T10:00:00",
+  "totalPrice": 60.00,
+  "shippingDetails": {"id": 1},
+  "customer": { "id": 3 }
+}
+
+### Update order
+PUT http://localhost:8080/order/1
+Content-Type: application/json
+Authorization: Bearer {{token}}
+
+{
+  "id": 1,
+  "orderStatus": "DELIVERED",
+  "orderDate": "2025-10-03T10:00:00",
+  "totalPrice": 150.00,
+  "shippingAddress": "789 Updated Street",
+  "customer": { "id": 1 }
+}
+
+### Delete order
+DELETE http://localhost:8080/order/1
+Authorization: Bearer {{token}}
+

@@ -1,0 +1,47 @@
+# @token = eyJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJkZm1wIiwic3ViIjoiZGlic29uIiwiYXV0aG9yaXRpZXMiOlt7ImF1dGhvcml0eSI6IkNVU1RPTUVSIn1dLCJ1c2VyX2lkIjozLCJleHAiOjE3NTk3MTc3Mjl9.4a1ZhzENjUF4Zkc92VosZxJwvv-zRro47gPP5ixVXE4
+
+### Get all users
+GET http://localhost:8080/users
+
+### Get user by ID
+GET http://localhost:8080/users/3
+
+### User login request
+POST http://localhost:8080/login
+Content-Type: application/json
+
+{
+  "username": "yjaiteh",
+  "password": "pass"
+}
+
+
+### Add new user
+POST http://localhost:8080/signup
+Content-Type: application/json
+
+{
+  "name": "Ousman Johm",
+  "username": "ojohm",
+  "password": "pass",
+  "role": "ADMIN",
+  "address": "123 Main St",
+  "phoneNumber": "1234567890"
+}
+
+### Update user
+PUT http://localhost:8080/users/4
+Content-Type: application/json
+
+{
+  "id": 4,
+  "name": "Muhammed Baan",
+  "username": "mbanoraf",
+  "password": "pass",
+  "role": "SELLER",
+  "address": "456 Market St",
+  "phoneNumber": "9876543210"
+}
+
+### Delete user
+DELETE http://localhost:8080/users/1
