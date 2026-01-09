@@ -1,17 +1,14 @@
-# Stage 1: Build the application
-FROM maven:3.9-eclipse-temurin-17-alpine AS build
+# Stage 1: Build with Maven
+FROM maven:3.9.6-eclipse-temurin-17 AS build   # Modern Maven + Java 17
 WORKDIR /app
 COPY pom.xml .
-COPY src src
-# If using Maven wrapper, copy it too
-COPY mvnw .
-COPY .mvn .mvn
-RUN chmod +x ./mvnw
-RUN ./mvnw clean package -DskipTests
+COPY src ./src
+RUN mvn clean package -DskipTests             # Use 'mvn' directly (no ./mvnw)
 
-# Stage 2: Create the runtime image
+# Stage 2: Lightweight runtime
 FROM eclipse-temurin:17-jdk-alpine
 VOLUME /tmp
+WORKDIR /app
 COPY --from=build /app/target/*.jar app.jar
 EXPOSE 8080
 ENTRYPOINT ["java", "-jar", "/app.jar"]
