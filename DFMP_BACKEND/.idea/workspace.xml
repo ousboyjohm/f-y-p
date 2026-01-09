@@ -4,9 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="350db370-b4ee-4fb0-96ff-363744d7a263" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-    </list>
+    <list default="true" id="350db370-b4ee-4fb0-96ff-363744d7a263" name="Changes" comment="" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -25,6 +23,7 @@
   </component>
   <component name="PropertiesComponent"><![CDATA[{
   "keyToString": {
+    "Application.Main.executor": "Run",
     "Application.Unnamed.executor": "Run",
     "ModuleVcsDetector.initialDetectionPerformed": "true",
     "RunOnceActivity.ShowReadmeOnStart": "true",
@@ -34,10 +33,10 @@
   }
 }]]></component>
   <component name="RunManager">
-    <configuration name="Unnamed" type="Application" factoryName="Application" nameIsGenerated="true">
+    <configuration name="Main" type="Application" factoryName="Application">
       <envs>
-        <env name="DB_URL" value="jdbc:mysql://localhost:3306/dfmp" />
-        <env name="DB_PASSWORD" value="pass" />
+        <env name="DB_PASSWORD" value="geeWEvmXQXZeNFQkxtMlIniKEPSckXnU" />
+        <env name="DB_URL" value="mysql://root:geeWEvmXQXZeNFQkxtMlIniKEPSckXnU@shuttle.proxy.rlwy.net:46520/railway" />
         <env name="DB_USERNAME" value="root" />
       </envs>
       <option name="MAIN_CLASS_NAME" value="org.example.Main" />
