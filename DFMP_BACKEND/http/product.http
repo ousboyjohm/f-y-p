@@ -27,18 +27,18 @@ Authorization: Bearer {{token}}
 }
 
 ### Add new seafood product
-POST http://localhost:8080/products
+POST https://final-year-project-backend-render.onrender.com/products
 Content-Type: application/json
 Authorization: Bearer {{token}}
 
 {
-  "name": "Lettuce",
-  "description": "Garden made lettuce",
-  "pricePerUnit": 100,
-  "stockQuantity": 15,
+  "name": "Bonga Fish4",
+  "description": "Fresh Bonga Fish4",
+  "pricePerUnit": 85,
+  "stockQuantity": 153,
   "imageUrl": "chad-montgomery-ULq-CC_Q7iY-unsplash.jpg",
-  "category": { "id": 3 },
-  "seller": { "id": 2 }
+  "category": { "id": 1},
+  "seller": { "id": 3 }
 }
 
 ### Update seafood product

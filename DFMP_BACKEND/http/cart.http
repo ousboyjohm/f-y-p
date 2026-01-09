@@ -6,7 +6,7 @@ GET http://localhost:8080/carts
 Authorization: Bearer {{token}}
 
 ### Get cart by ID
-GET http://localhost:8080/carts/1
+GET https://final-year-project-backend-render.onrender.com/carts/1
 Authorization: Bearer {{token}}
 
 ### Get cart by Customer
@@ -19,12 +19,12 @@ Authorization: Bearer {{token}}
 }
 
 ### Add new cart
-POST http://localhost:8080/carts
+POST https://final-year-project-backend-render.onrender.com/carts
 Content-Type: application/json
 Authorization: Bearer {{token}}
 
 {
-  "customer": { "id": 3 }
+  "customer": { "id": 4 }
 }
 
 ### Update cart

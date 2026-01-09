@@ -10,13 +10,13 @@ GET http://localhost:8080/categories/1
 Authorization: Bearer {{token}}
 
 ### Add new category
-POST http://localhost:8080/categories
+POST https://final-year-project-backend-render.onrender.com/categories
 Content-Type: application/json
 Authorization: Bearer {{token}}
 
 {
-  "name": "Electronics",
-  "description": "Electronic devices and accessories"
+  "name": "Prawns",
+  "description": "Prawns of different types"
 }
 
 ### Update category
