@@ -17,6 +17,7 @@ export default function AddCategory() {
     // const [loading, setLoading] = useState(false);
     const [error, setError] = useState<string | null>(null);
     const [success, setSuccess] = useState<Boolean>(false);
+    const API_URL = import.meta.env.VITE_API_URL;
 
     const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) => {
 
@@ -31,7 +32,7 @@ export default function AddCategory() {
 
     try {
 
-        await axios.post("http://localhost:8080/categories", form, {
+        await axios.post(`${API_URL}/categories`, form, {
         headers: {
             "Content-Type": "application/json",
         },

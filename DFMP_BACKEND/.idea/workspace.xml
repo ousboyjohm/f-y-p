@@ -25,13 +25,20 @@
   "keyToString": {
     "Application.Main.executor": "Run",
     "Application.Unnamed.executor": "Run",
+    "Maven.DFMP_BACKEND [clean,package,-DskipTests].executor": "Run",
     "ModuleVcsDetector.initialDetectionPerformed": "true",
     "RunOnceActivity.ShowReadmeOnStart": "true",
+    "RunOnceActivity.TerminalTabsStorage.copyFrom.TerminalArrangementManager.252": "true",
     "git-widget-placeholder": "main",
     "kotlin-language-version-configured": "true",
     "onboarding.tips.debug.path": "C:/Users/HP360/Desktop/f-y-p/DFMP_BACKEND/src/main/java/org/example/Main.java"
   }
 }]]></component>
+  <component name="RunAnythingCache">
+    <option name="myCommands">
+      <command value="mvn clean package -DskipTests" />
+    </option>
+  </component>
   <component name="RunManager">
     <configuration name="Main" type="Application" factoryName="Application">
       <envs>

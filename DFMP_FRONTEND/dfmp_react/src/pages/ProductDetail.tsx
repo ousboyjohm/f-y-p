@@ -19,18 +19,19 @@ export default function ProductDetail() {
   const [error, setError] = useState("");
   const [customer, setCustomer] = useState(localStorage.getItem("userId"));
   const [customerCart, setCustomerCart] = useState<number>(0);
+  const API_URL = import.meta.env.VITE_API_URL;
 
 
   useEffect(() => {
     const fetchProduct = async () => {
       try {
-          await axios.get<Product>(`http://localhost:8080/products/${id}`)
+          await axios.get<Product>(`${API_URL}/products/${id}`)
           .then(response => {
             setProduct(response.data);
           }
           );   
           
-          const response = await axios.post("http://localhost:8080/carts/customer", { id: Number(customer)});
+          const response = await axios.post(`${API_URL}/carts/customer`, { id: Number(customer)});
           setCustomerCart(response.data.id);
       } catch (err) {
         setError("Failed to load product details");
@@ -52,7 +53,7 @@ export default function ProductDetail() {
       cart: { id: customerCart },
     };
 
-    await axios.post("http://localhost:8080/cart-items",  cartItem, {
+    await axios.post(`${API_URL}/cart-items`,  cartItem, {
         headers: {
             "Content-Type": "application/json",
         },

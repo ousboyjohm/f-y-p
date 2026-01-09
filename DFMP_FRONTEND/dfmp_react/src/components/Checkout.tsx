@@ -11,6 +11,7 @@ export default function Checkout(){
     const {state} = useLocation();
     const [error, setError] = useState<string | null>(null);
     const [success, setSuccess] = useState<Boolean>(false);
+    const API_URL = import.meta.env.VITE_API_URL;
 
     const cartItems: CartItem[] = state?.cartItems;
 
@@ -39,7 +40,7 @@ export default function Checkout(){
 
     try {
 
-        const response = await axios.post("http://localhost:8080/shipping-details", shippingDetails, {
+        const response = await axios.post(`${API_URL}/shipping-details`, shippingDetails, {
         headers: {
             "Content-Type": "application/json",
         },
@@ -73,7 +74,7 @@ export default function Checkout(){
             customer: {id: Number(sessionStorage.getItem("userId"))}
         };
 
-        const response = await axios.post("http://localhost:8080/order", order, {
+        const response = await axios.post(`${API_URL}/order`, order, {
         headers: {
             "Content-Type": "application/json",
         },
@@ -91,7 +92,7 @@ export default function Checkout(){
         order: { id: orderId },
         };
 
-        return axios.post("http://localhost:8080/order-items", orderItem);
+        return axios.post(`${API_URL}/order-items`, orderItem);
     });
 
     await Promise.all(requests);

@@ -29,11 +29,12 @@ export default function SignUp() {
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
+    const API_URL = import.meta.env.VITE_API_URL;
     setError(null);
     setLoading(true);
 
     try {
-       await axios.post("http://localhost:8080/signup", form);
+       await axios.post(`${API_URL}/signup`, form);
 
       setSuccess(true);
       setTimeout(() => {

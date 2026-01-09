@@ -34,7 +34,8 @@ export default function SellerDashboard() {
   useEffect(() => {
           const fetchProducts = async () => {
           try {
-              const response = await axios.post(`http://localhost:8080/products/seller`, { id: Number(seller)});
+              const API_URL = import.meta.env.VITE_API_URL;
+              const response = await axios.post(`${API_URL}/products/seller`, { id: Number(seller)});
               setProducts(response.data);
           } catch (err) {
               setError("Failed to load featured products");

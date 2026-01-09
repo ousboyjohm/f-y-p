@@ -14,14 +14,15 @@ export default function Cart(){
     const [customer, setCustomer] = useState(sessionStorage.getItem("userId"));
     const [customerCart, setCustomerCart] = useState<number>(0);
     const [cartItems, setCartItems] = useState<CartItem[]>([]);
+    const API_URL = import.meta.env.VITE_API_URL;
 
 
     useEffect(() => {
         const fetchCustomerCart = async () => {
         try {
-            const response1 = await axios.post("http://localhost:8080/carts/customer", { id: Number(customer)});
+            const response1 = await axios.post(`${API_URL}/carts/customer`, { id: Number(customer)});
             setCustomerCart(response1.data.id);
-            const response2 = await axios.post("http://localhost:8080/cart-items/cart", { id: response1.data.id});
+            const response2 = await axios.post(`${API_URL}/cart-items/cart`, { id: response1.data.id});
             setCartItems(response2.data);
         } catch (err) {
             setError("Failed to load featured products");
@@ -53,7 +54,7 @@ export default function Cart(){
 
     const handleRemove = async (id: number) => {
     try {
-      await axios.delete(`http://localhost:8080/cart-items/${id}`); 
+      await axios.delete(`${API_URL}/cart-items/${id}`); 
       setCartItems((prev) => prev.filter((item) => item.id !== id));
     } catch (err) {
       console.error("Failed to remove item:", err);
@@ -69,7 +70,7 @@ export default function Cart(){
     if (newQty < 1) return; 
 
     try {
-      await axios.put(`http://localhost:8080/cart-items/${item.id}`, { id: item.id, cart: item.cart, product: item.product, quantity: newQty}); 
+      await axios.put(`${API_URL}/cart-items/${item.id}`, { id: item.id, cart: item.cart, product: item.product, quantity: newQty}); 
       setCartItems((prev) =>
         prev.map((item) =>
           item.id === id ? { ...item, quantity: newQty } : item

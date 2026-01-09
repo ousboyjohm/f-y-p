@@ -25,11 +25,12 @@ export default function SignIn() {
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
+    const API_URL = import.meta.env.VITE_API_URL;
     setLoading(true);
     setError(null);
 
     try {
-      const res = await axios.post("http://localhost:8080/login", form);
+      const res = await axios.post(`${API_URL}/login`, form);
 
 
       const { jwt, userId, role } = res.data;

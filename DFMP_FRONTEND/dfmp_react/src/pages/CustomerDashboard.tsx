@@ -21,6 +21,7 @@ export default function CustomerDashboard() {
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState("");
     const location = useLocation();
+    const API_URL = import.meta.env.VITE_API_URL;
 
     useEffect(() => {
       if (location.state?.section) {
@@ -32,7 +33,7 @@ export default function CustomerDashboard() {
           setLoading(true);
 
           const ordersResponse = await axios.post(
-            "http://localhost:8080/order/customer",
+            `${API_URL}/order/customer`,
             { id: Number(customer) }
           );
 
@@ -40,7 +41,7 @@ export default function CustomerDashboard() {
           setOrder(fetchedOrders);
 
           const requests = fetchedOrders.map((order: any) =>
-            axios.post("http://localhost:8080/order-items/order", {
+            axios.post(`${API_URL}/order-items/order`, {
               id: order.id, 
             })
           );

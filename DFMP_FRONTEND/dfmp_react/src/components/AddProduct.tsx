@@ -21,6 +21,7 @@ export default function AddProduct() {
 
   const [error, setError] = useState<string | null>(null);
   const [success, setSuccess] = useState<Boolean>(false);
+  const API_URL = import.meta.env.VITE_API_URL;
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) => {
     const { name, value, files } = e.target as HTMLInputElement;
@@ -49,7 +50,7 @@ export default function AddProduct() {
     // }
 
     // Send POST request
-    await axios.post("http://localhost:8080/products", form, {
+    await axios.post(`${API_URL}/products`, form, {
       headers: {
         "Content-Type": "application/json",
       },

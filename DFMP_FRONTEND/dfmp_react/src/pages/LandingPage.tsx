@@ -13,11 +13,12 @@ export default function LandingPage() {
   const [products, setProducts] = useState<Product[]>([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState("");
+  const API_URL = import.meta.env.VITE_API_URL;
 
   useEffect(() => {
     const fetchFeaturedProducts = async () => {
       try {
-        const response = await axios.get("http://localhost:8080/products");
+        const response = await axios.get(`${API_URL}/products`);
         setProducts(response.data);
       } catch (err) {
         setError("Failed to load featured products");
