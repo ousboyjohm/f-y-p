@@ -17,12 +17,12 @@ export default function ProductDetail() {
   const [product, setProduct] = useState<Product | null>(null);
   // const [loading, setLoading] = useState(true);
   // const [error, setError] = useState("");
-  const customer = localStorage.getItem("userId");
   const [customerCart, setCustomerCart] = useState<number>(0);
   const API_URL = import.meta.env.VITE_API_URL;
 
 
   useEffect(() => {
+    const customer = localStorage.getItem("userId");
     const fetchProduct = async () => {
       try {
           await axios.get<Product>(`${API_URL}/products/${id}`)
@@ -40,9 +40,9 @@ export default function ProductDetail() {
       }
     };
 
-    if (id && customer) fetchProduct();
-  }, [id, customer]);
-
+    if (id) fetchProduct();
+  }, [id]);
+//customer removed from dependency and if statement, comback to it later
 
   const addToCart = async () => {
     if (!product || !customerCart) return;

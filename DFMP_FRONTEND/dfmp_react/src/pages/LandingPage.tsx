@@ -13,9 +13,9 @@ export default function LandingPage() {
   const [products, setProducts] = useState<Product[]>([]);
   // const [loading, setLoading] = useState(true);
   // const [error, setError] = useState("");
-  const API_URL = import.meta.env.VITE_API_URL;
 
   useEffect(() => {
+    const API_URL = import.meta.env.VITE_API_URL;
     const fetchFeaturedProducts = async () => {
       try {
         const response = await axios.get(`${API_URL}/products`);

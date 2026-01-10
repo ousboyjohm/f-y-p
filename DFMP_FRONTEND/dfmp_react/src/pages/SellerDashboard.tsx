@@ -22,7 +22,6 @@ export default function SellerDashboard() {
   // const [loading, setLoading] = useState(true);
   // const [error, setError] = useState("");
   const [products, setProducts] = useState<Product[]>([]);
-  const seller = sessionStorage.getItem("userId");
   const [currentPage, setCurrentPage] = useState(1);
   const totalPerPage= 7;
   const firstIndex = (currentPage -1) * totalPerPage;
@@ -32,6 +31,7 @@ export default function SellerDashboard() {
   
 
   useEffect(() => {
+          const seller = sessionStorage.getItem("userId");
           const fetchProducts = async () => {
           try {
               const API_URL = import.meta.env.VITE_API_URL;

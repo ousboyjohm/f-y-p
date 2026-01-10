@@ -6,6 +6,8 @@
   <component name="ChangeListManager">
     <list default="true" id="350db370-b4ee-4fb0-96ff-363744d7a263" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/http/user.http" beforeDir="false" afterPath="$PROJECT_DIR$/http/user.http" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../DFMP_FRONTEND/dfmp_react/src/pages/LandingPage.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/../DFMP_FRONTEND/dfmp_react/src/pages/LandingPage.tsx" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -31,6 +33,7 @@
     &quot;ModuleVcsDetector.initialDetectionPerformed&quot;: &quot;true&quot;,
     &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
     &quot;RunOnceActivity.TerminalTabsStorage.copyFrom.TerminalArrangementManager.252&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.git.unshallow&quot;: &quot;true&quot;,
     &quot;git-widget-placeholder&quot;: &quot;main&quot;,
     &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
     &quot;onboarding.tips.debug.path&quot;: &quot;C:/Users/HP360/Desktop/f-y-p/DFMP_BACKEND/src/main/java/org/example/Main.java&quot;

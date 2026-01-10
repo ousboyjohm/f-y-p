@@ -7,7 +7,7 @@ GET https://final-year-project-backend-render.onrender.com/users
 GET http://localhost:8080/users/3
 
 ### User login request
-POST http://localhost:8080/login
+POST https://final-year-project-backend-render.onrender.com/login
 Content-Type: application/json
 
 {

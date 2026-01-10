@@ -17,13 +17,13 @@ export default function CustomerDashboard() {
   const [partToDisplay, setpartToDisplay] = useState("Dashboard");
     const [orders, setOrder] = useState<Order[]>([]);
     const [orderItem, setOrderItem] =useState<OrderItem[]>([]);
-    const customer= sessionStorage.getItem("userId");
     // const [loading, setLoading] = useState(true);
     // const [error, setError] = useState("");
     const location = useLocation();
     const API_URL = import.meta.env.VITE_API_URL;
 
     useEffect(() => {
+      const customer= sessionStorage.getItem("userId");
       if (location.state?.section) {
         setpartToDisplay(location.state.section);
       }
@@ -60,8 +60,8 @@ export default function CustomerDashboard() {
     };
 
   fetchOrdersAndItems();
-}, [customer, location.state]);
-
+}, [ location.state]);
+//customer removed from dependency, come back to it later
     
   return (
     <>

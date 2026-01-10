@@ -11,13 +11,13 @@ export default function Cart(){
     const navigate = useNavigate();
     // const [loading, setLoading] = useState(true);
     // const [error, setError] = useState("");
-    const customer= sessionStorage.getItem("userId");
     // const [customerCart, setCustomerCart] = useState<number>(0);
     const [cartItems, setCartItems] = useState<CartItem[]>([]);
     const API_URL = import.meta.env.VITE_API_URL;
 
 
     useEffect(() => {
+        const customer= sessionStorage.getItem("userId");
         const fetchCustomerCart = async () => {
         try {
             const response1 = await axios.post(`${API_URL}/carts/customer`, { id: Number(customer)});
