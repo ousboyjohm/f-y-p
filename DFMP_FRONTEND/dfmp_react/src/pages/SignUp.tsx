@@ -34,8 +34,9 @@ export default function SignUp() {
     setLoading(true);
 
     try {
-       await axios.post(`${API_URL}/signup`, form);
+       const res = await axios.post(`${API_URL}/signup`, form);
 
+       await axios.post(`${API_URL}/carts`, {customer: {id: res.data.id}});
       setSuccess(true);
       setTimeout(() => {
         navigate("/login");

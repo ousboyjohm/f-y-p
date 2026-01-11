@@ -1,5 +1,6 @@
 package org.example.Services;
 
+import jakarta.transaction.Transactional;
 import org.example.Models.Cart;
 import org.example.Models.CartItem;
 import org.example.Models.Category;
@@ -59,5 +60,9 @@ public class CartItemService {
             return false;
         }
         return true;
+    }
+    @Transactional
+    public boolean deleteByCartId(Integer cartId) {
+        return cartItemRepository.deleteAllByCartId(cartId) > 0;
     }
 }

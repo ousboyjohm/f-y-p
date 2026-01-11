@@ -50,4 +50,10 @@ public class CartItemController {
     public boolean deleteCartItem(@PathVariable Integer id){
         return cartItemService.delete(id);
     }
+
+    @DeleteMapping("/cart/{cartId}")
+    public boolean deleteAllCartItems(@PathVariable Integer cartId) {
+        return cartItemService.deleteByCartId(cartId);
+    }
+
 }

@@ -105,11 +105,10 @@ export default function Checkout(){
 
   try {
     const cartId = cartItems[0].cart.id;
-    console.log(cartId);
     const newOrderId = await createOrder();
     // setOrderId(newOrderId);
     await createOrderItems(newOrderId);
-    //await axios.delete(`http://localhost:8080/cart-items/${cartId}`)
+    await axios.delete(`${API_URL}/cart-items/cart/${cartId}`);
     navigate("/customer")
   } catch (err) {
     console.error("Failed to place order:", err);

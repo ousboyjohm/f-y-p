@@ -17,16 +17,16 @@ Content-Type: application/json
 
 
 ### Add new user
-POST https://final-year-project-backend-render.onrender.com/signup
+POST http://localhost:8080/signup
 Content-Type: application/json
 
 {
-  "name": "Yusuf Jaiteh",
-  "username": "yjaiteh",
+  "name": "Molamin Saye",
+  "username": "msaye",
   "password": "pass",
   "role": "CUSTOMER",
   "address": "Brikama",
-  "phoneNumber": "3474018"
+  "phoneNumber": "3844759"
 }
 
 ### Update user

@@ -22,7 +22,7 @@ export default function ProductDetail() {
 
 
   useEffect(() => {
-    const customer = localStorage.getItem("userId");
+    const customer = sessionStorage.getItem("userId");
     const fetchProduct = async () => {
       try {
           await axios.get<Product>(`${API_URL}/products/${id}`)
