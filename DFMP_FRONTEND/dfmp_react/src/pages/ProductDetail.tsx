@@ -42,7 +42,7 @@ export default function ProductDetail() {
 
     if (id) fetchProduct();
   }, [id]);
-//customer removed from dependency and if statement, comback to it later
+//customer removed from dependency and if statement, comeback to it later
 
   const addToCart = async () => {
     if (!product || !customerCart) return;

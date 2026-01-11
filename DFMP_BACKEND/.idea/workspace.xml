@@ -6,8 +6,9 @@
   <component name="ChangeListManager">
     <list default="true" id="350db370-b4ee-4fb0-96ff-363744d7a263" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/http/user.http" beforeDir="false" afterPath="$PROJECT_DIR$/http/user.http" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../DFMP_FRONTEND/dfmp_react/src/pages/LandingPage.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/../DFMP_FRONTEND/dfmp_react/src/pages/LandingPage.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../DFMP_FRONTEND/dfmp_react/src/components/hero.css" beforeDir="false" afterPath="$PROJECT_DIR$/../DFMP_FRONTEND/dfmp_react/src/components/hero.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../DFMP_FRONTEND/dfmp_react/src/pages/CustomerDashboard.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/../DFMP_FRONTEND/dfmp_react/src/pages/CustomerDashboard.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../DFMP_FRONTEND/dfmp_react/src/pages/ProductDetail.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/../DFMP_FRONTEND/dfmp_react/src/pages/ProductDetail.tsx" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />

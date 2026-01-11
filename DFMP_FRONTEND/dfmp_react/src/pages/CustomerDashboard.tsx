@@ -25,7 +25,6 @@ export default function CustomerDashboard() {
 
     useEffect(() => {
        customer = sessionStorage.getItem("userId");
-       console.log(customer, 'custo')
       if (location.state?.section) {
         setpartToDisplay(location.state.section);
       }
