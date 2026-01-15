@@ -1,6 +1,5 @@
 package org.example.Services;
 
-import org.example.Models.Category;
 import org.example.Models.Order;
 import org.example.Models.OrderItem;
 import org.example.Models.Product;
@@ -25,6 +24,10 @@ public class OrderItemService {
 
     public List<OrderItem> findByOrder(Order order) {
         return orderItemRepository.findByOrder(order);
+    }
+
+    public List<OrderItem> findByProduct(Product product) {
+        return orderItemRepository.findByProduct(product);
     }
 
 

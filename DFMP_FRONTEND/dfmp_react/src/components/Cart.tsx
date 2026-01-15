@@ -1,8 +1,9 @@
-import {  useNavigate } from "react-router-dom";
+import {  useNavigate, Link } from "react-router-dom";
 import Navbar from "./Navbar";
 import axios from "axios";
 import { useState, useEffect } from "react";
 import type { CartItem } from "../models/modelTypes";
+import { LuShoppingBag, LuArrowLeft } from "react-icons/lu";
 
 
 
@@ -33,21 +34,6 @@ export default function Cart(){
 
         fetchCustomerCart();
   }, []);
-
-//   useEffect(() => {
-//         const fetchCartItems = async () => {
-//         try {
-//             const response = await axios.post("http://localhost:8080/cart-items/cart", { id: customerCart});
-//             setCartItems(response.data);
-//         } catch (err) {
-//             setError("Failed to load featured products");
-//         } finally {
-//             setLoading(false);
-//         }
-//     };
-
-//         fetchCartItems();
-//   }, []);
 
 
     const total = cartItems.reduce((acc, item) => acc + item.product.pricePerUnit * item.quantity, 0);
@@ -81,10 +67,33 @@ export default function Cart(){
     }
   };
 
-    return(
+    if (cartItems.length === 0) {
+    return (
+      <>
+        <Navbar />
+        <div className="min-h-screen bg-gray-50">
+          <main className="max-w-7xl mx-auto px-4 py-50">
+            <div className="text-center py-12">
+              <LuShoppingBag size={64} className="mx-auto text-gray-300 mb-4" />
+              <h1 className="text-3xl font-bold text-gray-900 mb-4">Your cart is empty</h1>
+              <p className="text-gray-600 mb-8">Start shopping to add items to your cart</p>
+              <Link to="/shop">
+                <button  className="h-10 rounded-md px-4  bg-blue-700 text-white">
+                  <LuArrowLeft size={20} className="inline mr-1"/>
+                   Continue Shopping
+                </button>
+              </Link>
+            </div>
+          </main>
+        </div>
+      </>
+    );
+  }
 
+    return(
         <>
         <Navbar />
+        
         <main className="m-6 mt-16 pt-8">
             <h1 className="mb-6 font-bold text-2xl">Cart Items List: </h1>
             <div className="">

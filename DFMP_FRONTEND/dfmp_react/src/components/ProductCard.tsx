@@ -16,7 +16,7 @@ export default function ProductCard({ id, name, price, image }: ProductCardProps
             
         <div className="bg-white rounded-lg shadow hover:shadow-lg transition p-4">
             <Link to={`/product/${id}`}>
-            <img src={image} alt={name} className="rounded-md h-40 w-40 object-cover" />
+            <img src={image} alt={name} className="rounded-md h-40 w-40 object-cover hover:scale-105 transition-transform"/>
 
             <h3 className="text-lg font-semibold mt-3 text-gray-800">
                 {name}

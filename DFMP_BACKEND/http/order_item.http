@@ -10,6 +10,15 @@ GET http://localhost:8080/order-items/1
 Authorization: Bearer {{token}}
 
 ### Add new order item
+POST http://localhost:8080/order-items/product
+Content-Type: application/json
+Authorization: Bearer {{token}}
+
+{
+  "id": 1
+}
+
+### Add new order item
 POST http://localhost:8080/order-items
 Content-Type: application/json
 Authorization: Bearer {{token}}

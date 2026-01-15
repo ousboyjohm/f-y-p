@@ -42,9 +42,10 @@ export default function ProductDetail() {
 
     if (id) fetchProduct();
   }, [id]);
-//customer removed from dependency and if statement, comeback to it later
+
 
   const addToCart = async () => {
+    if (!sessionStorage.getItem("userId")) navigate("/login");
     if (!product || !customerCart) return;
 
     const cartItem = {
@@ -88,7 +89,7 @@ export default function ProductDetail() {
         <div className="flex flex-col md:flex-row gap-12">
 
           <div className="md:w-1/2">
-            <img src={`/${product?.imageUrl}`} alt={product?.name} className="w-full h-96 object-cover rounded" />
+            <img src={`/${product?.imageUrl}`} alt={product?.name} className="w-full h-96 object-cover rounded hover:scale-105 transition-transform" />
           </div>
 
 

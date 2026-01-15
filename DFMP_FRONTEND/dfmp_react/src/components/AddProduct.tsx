@@ -1,13 +1,32 @@
 import Navbar from "../components/Navbar";
-import Footer from "../components/Footer";
 import Sidebar from "../components/Sidebar";
-import { useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { useState, useEffect } from "react";
+import { useNavigate, useParams, useLocation } from "react-router-dom";
 import axios from "axios";
+import type { Product } from "../models/modelTypes";
 
 export default function AddProduct() {
 
   const navigate = useNavigate();
+  const { id: productId } = useParams();
+  const {state} = useLocation();
+  
+  const product: Product = state?.product;
+
+  useEffect(() => {
+  if (!product) return;
+
+  setForm({
+    name: product.name,
+    description: product.description,
+    pricePerUnit: String(product.pricePerUnit),
+    stockQuantity: String(product.stockQuantity),
+    category: { id: product.category.id },
+    seller: { id: product.seller.id },
+    imageUrl: product.imageUrl,
+  });
+}, [product]);
+
 
   const [form, setForm] = useState({
     name: "",
@@ -15,7 +34,7 @@ export default function AddProduct() {
     pricePerUnit: "",
     stockQuantity: "",
     category: {id: 1},
-    seller: {id: 2},
+    seller: {id: Number(sessionStorage.getItem("userId") ?? 0)},
     imageUrl: "",
   });
 
@@ -49,12 +68,22 @@ export default function AddProduct() {
     //   formData.append("image", form.imageUrl);
     // }
 
-    // Send POST request
-    await axios.post(`${API_URL}/products`, form, {
-      headers: {
-        "Content-Type": "application/json",
-      },
-    });
+    if(productId) {
+      // Send PUT request
+      const productEdit = { ...form, id: productId};
+      await axios.put(`${API_URL}/products/${productId}`, productEdit, {
+        headers: {
+          "Content-Type": "application/json",
+        },
+      });
+    } else {
+      // Send POST request
+      await axios.post(`${API_URL}/products`, form, {
+        headers: {
+          "Content-Type": "application/json",
+        },
+      });
+    }
 
     // console.log("Product added:", response.data);
     // alert("Product added successfully!");
@@ -93,7 +122,9 @@ export default function AddProduct() {
           {error && <p className="text-red-600 text-center mb-3">{error}</p>}
 
           {success && (
-            <p className="text-green-600 text-center mb-3">Category added successfully</p>
+            <p className="text-green-600 text-center mb-3">
+              {productId ? "Product Edited successfully" : "Product added successfully"}
+            </p>
           )}
 
           <form onSubmit={handleSubmit} className="space-y-6 bg-white p-6 rounded-lg shadow">
@@ -187,7 +218,6 @@ export default function AddProduct() {
           </form>
         </main>
       </div>
-      <Footer />
     </>
   );
 }

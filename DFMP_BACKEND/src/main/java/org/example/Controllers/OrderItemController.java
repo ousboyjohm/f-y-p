@@ -32,6 +32,10 @@ public class OrderItemController {
         return orderItemService.findByOrder(order);
     }
 
+    @PostMapping("/product")
+    public List<OrderItem> findByProduct(@RequestBody Product product) {
+        return orderItemService.findByProduct(product);
+    }
     @GetMapping
     public List<OrderItem> findAllOrderItems(){
         return orderItemService.findAll();

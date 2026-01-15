@@ -20,9 +20,14 @@ export default function Navbar() {
     <nav className=" bg-blue-900 text-white fixed top-0 left-0 right-0 z-50 shadow-md">
       <div className="max-w-7xl mx-auto flex items-center justify-between px-6 h-16">
         
-        <Link to="/" className="text-2xl font-bold tracking-wide">
-          FishMarket
-        </Link>
+        <div className="flex space-x-1">
+          <Link to="/">
+            <img src="/logo3.jfif"  alt="logo" className="h-9"/>
+          </Link>
+          <Link to="/" className="text-2xl font-bold tracking-wide">
+            FishMarket
+          </Link>
+        </div>
 
         <div className="flex space-x-6">
           <Link className="hover:text-blue-300 transition" to="/"><HiOutlineHome size={30}/></Link>

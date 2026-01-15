@@ -26,8 +26,8 @@ function App() {
       <Route path='/product/:id' element={<ProductDetail />} />
       <Route path='/customer' element={<CustomerDashboard />} />
       <Route path='/cart' element={<Cart />} />
-      <Route path='/add-product' element={<AddProduct />} />
-      <Route path='/add-category' element={<AddCategory />} />
+      <Route path='/add-product/:id?' element={<AddProduct />} />
+      <Route path='/add-category/:id?' element={<AddCategory />} />
       <Route path='/checkout' element={<Checkout />} />
       <Route path='/admin' element={<AdminDashboard />}/>
     </Routes>

@@ -1,17 +1,17 @@
 # @token = eyJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJkZm1wIiwic3ViIjoiZGlic29uIiwiYXV0aG9yaXRpZXMiOlt7ImF1dGhvcml0eSI6IkNVU1RPTUVSIn1dLCJ1c2VyX2lkIjozLCJleHAiOjE3NTk3MTc3Mjl9.4a1ZhzENjUF4Zkc92VosZxJwvv-zRro47gPP5ixVXE4
 
 ### Get all users
-GET https://final-year-project-backend-render.onrender.com/users
+GET http://localhost:8080/users
 
 ### Get user by ID
 GET http://localhost:8080/users/3
 
 ### User login request
-POST https://final-year-project-backend-render.onrender.com/login
+POST http://localhost:8080/login
 Content-Type: application/json
 
 {
-  "username": "yjaiteh",
+  "username": "mdibba",
   "password": "pass"
 }
 
@@ -21,12 +21,12 @@ POST http://localhost:8080/signup
 Content-Type: application/json
 
 {
-  "name": "Molamin Saye",
-  "username": "msaye",
+  "name": "Yusuf Jaiteh",
+  "username": "yjaiteh",
   "password": "pass",
   "role": "CUSTOMER",
   "address": "Brikama",
-  "phoneNumber": "3844759"
+  "phoneNumber": "3474018"
 }
 
 ### Update user

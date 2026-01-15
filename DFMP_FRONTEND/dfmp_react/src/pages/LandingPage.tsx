@@ -73,7 +73,7 @@ export default function LandingPage() {
         <Hero />
 
         <section className="max-w-7xl mx-auto px-6 py-12">
-          <h2 className="text-2xl font-bold mb-6 text-gray-800">Categories</h2>
+          <h2 className="text-2xl font-bold mb-6 text-gray-800 text-center">Categories</h2>
           <div className="grid grid-cols-2 md:grid-cols-4 gap-6">
             {categories.map((cat) => (
               <Link
@@ -81,7 +81,7 @@ export default function LandingPage() {
                 to={`/shop`}
                 className="rounded-lg overflow-hidden shadow hover:shadow-lg transition"
               >
-                <img src={cat.img} alt={cat.name} className="w-full h-40 object-cover" />
+                <img src={cat.img} alt={cat.name} className="w-full h-40 object-cover hover:scale-105 transition-transform" />
                 <p className="text-center py-2 font-medium text-gray-800 bg-gray-100">{cat.name}</p>
               </Link>
             ))}
@@ -89,7 +89,7 @@ export default function LandingPage() {
         </section>
 
         <section className="max-w-7xl mx-auto px-6 py-12">
-          <h2 className="text-2xl font-bold mb-6 text-gray-800">Featured Products</h2>
+          <h2 className="text-2xl font-bold mb-6 text-gray-800 text-center">Featured Products</h2>
                 {/* {loading && <Loader />} */}
           <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-6">
             {products.slice(1,5).map((product) => (

@@ -104,9 +104,21 @@ export default function Sidebar({ role, onFilterChange } : SidebarProps){
         <h3 className="text-sm uppercase tracking-wide text-blue-300 mb-3">Seller Menu</h3>
         <ul className="space-y-3">
           <li><Link to="/seller" className="hover:text-blue-300">Dashboard</Link></li>
-          <li><Link to="/seller/products" className="hover:text-blue-300">My Products</Link></li>
+          <li><Link to="/seller" className="hover:text-blue-300">Products</Link></li>
           <li><Link to="/add-product" className="hover:text-blue-300">Add Product</Link></li>
-          <li><Link to="/seller/orders" className="hover:text-blue-300">Orders Received</Link></li>
+          <li><Link to="/seller/orders" className="hover:text-blue-300">Orders </Link></li>
+        </ul>
+      </div>
+      )}
+
+      {role === "admin" && (
+      <div>
+        <h3 className="text-sm uppercase tracking-wide text-blue-300 mb-3">Admin Menu</h3>
+        <ul className="space-y-3">
+          <li><Link to="/seller" className="hover:text-blue-300">Dashboard today's orders, revenue, active products, </Link></li>
+          <li><Link to="/seller" className="hover:text-blue-300">My Products</Link></li>
+          <li><Link to="/seller" className="hover:text-blue-300">Add Product</Link></li>
+          <li><Link to="/seller" className="hover:text-blue-300">Orders Received</Link></li>
         </ul>
       </div>
       )}
