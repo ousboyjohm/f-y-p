@@ -5,6 +5,16 @@ import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
 
+  // This is the component responsible for editing and adding a new category to the system. If it is to add, 
+  // it has a form where the details of the category is entered. When the button to add is clicked, the 
+  // handleSubmit function is called. The function checks whether there is no id availlable. If no id is 
+  // available, the function sends a post request to the backend.
+  // When it is to do an edition, it takes the id of the category from the params and stores it in the id
+  // variable, and it also takes the category to be edited from the page that triggers the edition and 
+  // stores it in the category variable. It then prefill the form with the category's values
+  // When the button to edit is clicked, the handleSubmit function is called which checks whether there is id
+  // available in the  id variable. If there is, the function sends a put request to the backend for update.
+
 export default function AddCategory() {
 
     const navigate = useNavigate();

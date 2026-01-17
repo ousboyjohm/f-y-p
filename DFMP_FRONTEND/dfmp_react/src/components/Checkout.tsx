@@ -5,6 +5,14 @@ import { useNavigate, useLocation } from "react-router-dom";
 import axios from "axios";
 import type { CartItem } from "../models/modelTypes";
 
+    // This is the page that is displayed when the checkout button in the carts page is clicked. When this 
+    // page loads, it stores the cart items that are sent from the cart page and then displays a form where
+    // the shipping details of the order will be entered. When the Proceed button on the shipping details form
+    // is clicked, the  handleShippingDetailsSubmit funcion is called which adds the shiping details in the
+    // backend. After that the order summary is displayed. Which has an order button which when clicked 
+    // calls the handleSubmit function. The handleSubmit function creates order and order items in the 
+    // backend and then takes you to the customer page.
+
 
 export default function Checkout(){
     const navigate = useNavigate();
@@ -15,7 +23,7 @@ export default function Checkout(){
 
     const cartItems: CartItem[] = state?.cartItems;
 
-    const total = cartItems.reduce((acc, item) => acc + item.product.pricePerUnit* item.quantity, 0);
+    const total = cartItems.reduce((acc, item) => acc + item.product.pricePerUnit * item.quantity, 0);
     const [partToDisplay, setpartToDisplay] = useState("Shipping Details");
     const [shippingDetails, setShippingDetails] = useState({
         address: "",

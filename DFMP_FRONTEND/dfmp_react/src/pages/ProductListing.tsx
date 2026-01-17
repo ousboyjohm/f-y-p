@@ -5,6 +5,10 @@ import { useEffect, useState } from "react";
 import axios from "axios";
 import type { Product } from "../models/modelTypes";
 
+// This is the page that lists all the products for shopping. It uses the ProductCard component to display
+// The products in a cart format. When a product is clicked, it takes you to the ProductDetail page.
+// It has pagination for making the products into pages.
+
 
 export default function Shop() {
 
@@ -74,6 +78,7 @@ export default function Shop() {
             ))}
           </div>
 
+            {/* This part handles the pagination */}
           <div className="flex justify-center mt-8 space-x-2">
             <button
                 onClick={() => setCurrentPage(currentPage-1)}

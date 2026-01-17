@@ -8,6 +8,9 @@ type ProductCardProps = {
   image: string;
 };
 
+// This is the part that displays a product in a card format. Any page that wants to display a product in a cart format call this component and 
+// then send what is to be displayed on the cart. This component then uses those and displays them on the cart.
+
 export default function ProductCard({ id, name, price, image }: ProductCardProps){
         // const navigate = useNavigate();
 

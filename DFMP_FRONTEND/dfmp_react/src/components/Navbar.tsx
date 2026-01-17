@@ -5,6 +5,10 @@ import { HiOutlineShoppingBag, HiOutlineShoppingCart, HiOutlineHome } from "reac
 import { FiLogIn, FiLogOut } from "react-icons/fi";
 // import { FaEdit, FaTrash, FaUser, FaPlus, FaPlusSquare } from "react-icons/fa";
 
+// This is the component responsible for displaying the navbar on a page. It takes you to a particular 
+// component when the icon representing that component is clicked. As for the log out icon, when it is 
+// clicked, it calls the handleLogOut function which signs you out and then takes you to the login page.
+
 export default function Navbar() {
   const location = useLocation();
   const navigate = useNavigate();

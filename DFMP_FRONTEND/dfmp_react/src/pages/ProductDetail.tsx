@@ -7,6 +7,12 @@ import { Link } from "react-router-dom";
 import axios from "axios";
 import type { Product } from "../models/modelTypes";
 
+  // This is the page that displays the details of the product which the user  clicks. Immediate this Component
+  // loads, it fetched the product which is clicked by using its id and store it in the product state. It
+  // also fetch the cart of the customer. When the add to cart button is clicked, the addToCart function is
+  // called which adds the particular product to the cart if the user is logged in. If not it takes the 
+  // user to the log in page. 
+
 
 export default function ProductDetail() {
   const navigate = useNavigate();

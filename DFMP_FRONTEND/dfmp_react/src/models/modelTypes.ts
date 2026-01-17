@@ -1,3 +1,6 @@
+//  This defines the types of object found in the system. It defines their attributes and the data types of 
+//  those attributs
+
 export interface Category {
     id: number,
     name: string,

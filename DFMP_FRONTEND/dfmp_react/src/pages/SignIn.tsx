@@ -4,6 +4,10 @@ import axios from "axios";
 import { useNavigate } from "react-router-dom";
 import Navbar from "../components/Navbar";
 
+  // This is the page that is responesible for signing in a user into his account. When the user enters his
+  // credentials and clicks the sign in button, the handleSubmit function is called which send the login
+  // request to the backend. On success, the user is taken to his dashboard base on his role.
+
 
 export default function SignIn() {
 

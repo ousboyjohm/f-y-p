@@ -16,6 +16,8 @@ import AddCategory from './components/AddCategory'
 function App() {
 
   return (
+      // This is the component that controls routing. It displays the component whose part matches the 
+      // path of the browser's url. By default it displays the <LandingPage> component whose path is '/'.
     <div className='bg-sky-50'>
     <Routes>
       <Route path='/' element={<LandingPage />} />

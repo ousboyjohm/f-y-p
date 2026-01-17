@@ -7,6 +7,10 @@ import { useEffect, useState } from "react";
 import axios from "axios";
 import type { Product } from "../models/modelTypes";
 
+  // This is the page that is displays when a person visits the site because it has the default route which is
+  //  '/'. When is displays, it fetch all the products in the system and store them in the products state.
+  //  It wraps the nav bar, hero section, category section and featured product section and also the footer.
+
 
 export default function LandingPage() {
 
@@ -14,6 +18,7 @@ export default function LandingPage() {
   // const [loading, setLoading] = useState(true);
   // const [error, setError] = useState("");
 
+  // This runs immediate this page is displayed. It is where all the products are fetched.
   useEffect(() => {
     const API_URL = import.meta.env.VITE_API_URL;
     const fetchFeaturedProducts = async () => {
@@ -38,14 +43,6 @@ export default function LandingPage() {
     { name: "Lobsters", img: "chad-montgomery-ULq-CC_Q7iY-unsplash.jpg" },
   ];
 
-//   const featuredProducts = [
-//     { id: "1", name: "Tilapia", price: 250, image: "chad-montgomery-ULq-CC_Q7iY-unsplash.jpg" },
-//     { id: "2", name: "Crab", price: 500, image: "sebastien-devocelle-RnjSj-m6PSg-unsplash.jpg" },
-//     { id: "3", name: "Lobster", price: 1200, image: "pexels-mali-229789.jpg" },
-//     { id: "4", name: "Prawns", price: 400, image: "chad-montgomery-ULq-CC_Q7iY-unsplash.jpg" },
-// ];
-  // const featuredProducts = products.slice(0, 5);
-
   const benefits = [
     { icon: "✔️", text: "Certified Sellers" },
     { icon: "🚚", text: "Fast Delivery" },
@@ -57,21 +54,12 @@ export default function LandingPage() {
       <Navbar />
 
       <main className="pt-24">
-
-        {/* <section className="bg-blue-900 text-white h-96 flex flex-col justify-center items-center text-center px-6">
-          <h1 className="text-4xl font-bold mb-4">
-            Fresh Seafood Delivered to Your Door
-          </h1>
-          <Link
-            to="/shop"
-            className="bg-white text-blue-900 px-6 py-3 rounded-md font-semibold hover:bg-gray-100"
-          >
-            Shop Now
-          </Link>
-        </section> */}
-      {/* {error && <Alert type="error" message={error}/>} */}
+        
         <Hero />
 
+
+           {/* This is the categories section which displays product of different category. When one is clicked
+           It takes you to the shopping page (ProductListing page) */}
         <section className="max-w-7xl mx-auto px-6 py-12">
           <h2 className="text-2xl font-bold mb-6 text-gray-800 text-center">Categories</h2>
           <div className="grid grid-cols-2 md:grid-cols-4 gap-6">
@@ -88,6 +76,8 @@ export default function LandingPage() {
           </div>
         </section>
 
+           {/* This is the featured products section which displays some featured products. 
+            When one is clicked It takes you to the Product Details page */}
         <section className="max-w-7xl mx-auto px-6 py-12">
           <h2 className="text-2xl font-bold mb-6 text-gray-800 text-center">Featured Products</h2>
                 {/* {loading && <Loader />} */}

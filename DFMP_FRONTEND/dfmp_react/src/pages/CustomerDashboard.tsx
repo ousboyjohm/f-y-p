@@ -6,11 +6,12 @@ import axios from "axios";
 import type { Order, OrderItem } from "../models/modelTypes";
 import { useLocation } from "react-router-dom";
 
-// const recentOrders = [
-//   { id: "12345", product: "Tilapia", status: "Delivered" },
-//   { id: "12346", product: "Crab", status: "In Transit" },
-//   { id: "12347", product: "Lobster", status: "Pending" },
-// ];
+  // This is the page that is displayed immediately the customer signs in.
+  // Immediately it loads, it fetches a the orders of the customer and also the order items and stores 
+  // them in the orders and orderItem states respectfully. It displays the dashboard by default.
+  //  It uses the sidebar component 
+  // to decide what to display. The side bar component sends it what is to be displayed, and it stores that
+  // in the partToDisplay state. Then it displays it on the page.
 
 export default function CustomerDashboard() {
 
@@ -138,15 +139,6 @@ export default function CustomerDashboard() {
           </section>
           )}
 
-          {/* Quick Links */}
-          {/* <section className="flex gap-4">
-            <button className="bg-blue-600 hover:bg-blue-700 text-white px-6 py-3 rounded">
-              View Orders
-            </button>
-            <button className="bg-gray-200 hover:bg-gray-300 text-gray-800 px-6 py-3 rounded">
-              Update Profile
-            </button>
-          </section> */}
         </main>
       </div>
       {/* <Footer /> */}

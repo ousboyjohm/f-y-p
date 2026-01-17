@@ -1,6 +1,7 @@
 import { Link } from "react-router-dom";
 import { FaFacebook, FaInstagram, FaTwitter } from "react-icons/fa";
 
+  // This is the component responsible for displaying the footer on the page.
 
 export default function Footer() {
 

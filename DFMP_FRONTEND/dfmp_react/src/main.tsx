@@ -11,3 +11,7 @@ createRoot(document.getElementById('root')!).render(
   </StrictMode>,
   </BrowserRouter>
 )
+
+
+// This is the entry point of the app. When the app is run, this is one is displayed.
+// This in turn dislpays the App.tsx component which it wraps in line 10 above.

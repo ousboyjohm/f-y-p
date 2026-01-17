@@ -9,6 +9,9 @@ interface SidebarProps {
   }) => void;
 }
 
+  // This is the component responsible for displaying a sidebar on the shop, customer, seller and admin pages. Any page that wants to use it send
+  // it its name so that it can only display contents that are meant for that page only. When a particular content on the side bar is clicked, it
+  // the side bar tells that page what part to display by sending the part to display to the page. The page can then display that part.
 
 export default function Sidebar({ role, onFilterChange } : SidebarProps){
 
@@ -103,10 +106,10 @@ export default function Sidebar({ role, onFilterChange } : SidebarProps){
       <div>
         <h3 className="text-sm uppercase tracking-wide text-blue-300 mb-3">Seller Menu</h3>
         <ul className="space-y-3">
-          <li><Link to="/seller" className="hover:text-blue-300">Dashboard</Link></li>
-          <li><Link to="/seller" className="hover:text-blue-300">Products</Link></li>
+          <li><Link to="/seller" state={{ section: "Dashboard" }} className="hover:text-blue-300">Dashboard</Link></li>
+          <li><Link to="/seller" state={{ section: "Products" }} className="hover:text-blue-300">Products</Link></li>
           <li><Link to="/add-product" className="hover:text-blue-300">Add Product</Link></li>
-          <li><Link to="/seller/orders" className="hover:text-blue-300">Orders </Link></li>
+          <li><Link to="/seller" state={{ section: "Orders" }} className="hover:text-blue-300">Orders </Link></li>
         </ul>
       </div>
       )}

@@ -5,7 +5,12 @@ import { useState, useEffect } from "react";
 import type { CartItem } from "../models/modelTypes";
 import { LuShoppingBag, LuArrowLeft } from "react-icons/lu";
 
-
+  // This is the page that displays the cart of a customer with its cartItems. Whe it loads, it fetches the
+  // cart and its cart items from the backend and stores them in a variable. On the page, there is a buttion 
+  // that removes an item from the cart. When it is clicked, it calls the handleRemove function which removes
+  // the item from the cart and then re-displays the remaining items on the cart. There is also a checkout
+  // button which when clicked calls the checkout function. This checkout function then takes you to the 
+  // checkout page sending the items on the cart along.
 
 export default function Cart(){
 

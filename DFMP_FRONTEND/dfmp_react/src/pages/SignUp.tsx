@@ -4,6 +4,10 @@ import axios from "axios";
 import { useNavigate } from "react-router-dom";
 
 
+    // This is the page responsibe for registering users in the system. It makes a user a customer by default
+    // When the sign up button is clicked, it calls the handleSubmit function which sends the request to the
+    // backend. On success, it automatically creates a cart for the user and then takes him to login page.
+
 
 export default function SignUp() {
 
@@ -15,7 +19,7 @@ export default function SignUp() {
     phoneNumber: "",
     username: "",
     password: "",
-    role: "SELLER"
+    role: "CUSTOMER"
   });
 
   const [loading, setLoading] = useState(false);

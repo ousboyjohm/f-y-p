@@ -1,6 +1,8 @@
 import '../components/hero.css';
 import { Link } from "react-router-dom";
 
+  // This is the component responsible for displaying the hero section on the landing page.
+  
 export default function Hero() {
 
   return (
