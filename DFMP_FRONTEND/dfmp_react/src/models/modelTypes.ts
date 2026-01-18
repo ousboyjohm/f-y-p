@@ -54,7 +54,8 @@ export interface Order {
     orderDate: string,
     totalPrice: number,
     shippingAddress: string,
-    customer: User
+    customer: User,
+    items: OrderItem[]
 }
 
 

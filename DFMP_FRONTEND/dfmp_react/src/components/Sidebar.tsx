@@ -115,13 +115,13 @@ export default function Sidebar({ role, onFilterChange } : SidebarProps){
       )}
 
       {role === "admin" && (
-      <div>
+      <div className="pt-25">
         <h3 className="text-sm uppercase tracking-wide text-blue-300 mb-3">Admin Menu</h3>
         <ul className="space-y-3">
-          <li><Link to="/seller" className="hover:text-blue-300">Dashboard today's orders, revenue, active products, </Link></li>
-          <li><Link to="/seller" className="hover:text-blue-300">My Products</Link></li>
-          <li><Link to="/seller" className="hover:text-blue-300">Add Product</Link></li>
-          <li><Link to="/seller" className="hover:text-blue-300">Orders Received</Link></li>
+          <li><Link to="/admin" state={{ section: "Dashboard" }} className="hover:text-blue-300">Dashboard</Link></li>
+          <li><Link to="/admin" state={{ section: "Users" }} className="hover:text-blue-300">Users</Link></li>
+          <li><Link to="/admin" state={{ section: "Products" }} className="hover:text-blue-300">Product</Link></li>
+          <li><Link to="/admin" state={{ section: "Orders" }} className="hover:text-blue-300">Orders</Link></li>
         </ul>
       </div>
       )}

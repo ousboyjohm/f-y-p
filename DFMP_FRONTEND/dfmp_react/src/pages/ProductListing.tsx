@@ -4,6 +4,7 @@ import ProductCard from "../components/ProductCard";
 import { useEffect, useState } from "react";
 import axios from "axios";
 import type { Product } from "../models/modelTypes";
+import Sidebar from "../components/Sidebar";
 
 // This is the page that lists all the products for shopping. It uses the ProductCard component to display
 // The products in a cart format. When a product is clicked, it takes you to the ProductDetail page.
@@ -62,6 +63,7 @@ export default function Shop() {
         {/* <Sidebar role="shop" onFilterChange={(filters) => {
           fetchProducts(filters);
         }}/> */}
+        <Sidebar role="shop"  />
 
         <main className="flex-1  px-6 py-12"> {/*ml-64*/}
           <h1 className="text-3xl font-bold mb-6 text-gray-800">Shop</h1>

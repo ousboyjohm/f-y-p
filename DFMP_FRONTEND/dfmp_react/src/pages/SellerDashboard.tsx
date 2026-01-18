@@ -57,7 +57,6 @@ export default function SellerDashboard() {
                 const allOrderItems = results.flatMap(res => res.data);
       
                 setOrders(allOrderItems);
-                //remove below here, not efficient
                 setUniqueOrders(
                   Array.from(
                     new Map<number, Order>(
@@ -79,7 +78,7 @@ export default function SellerDashboard() {
       // is clicked, it takes you to the AddProduct component and send the product to be deleted there
     function handleEdit(product: Product) {
         navigate(`/add-product/${product.id}`, {state: {product}}); 
-      }
+    }
 
       // The function that handles the deletion of a product. When the delete icon is clicked, it deletes the 
       // product and then displays the remaining products
