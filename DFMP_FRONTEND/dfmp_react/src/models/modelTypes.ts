@@ -14,7 +14,8 @@ export interface User {
     password: string,
     role: string,
     address: string,
-    phoneNumber: string
+    phoneNumber: string,
+    active: boolean
 }
 
 export interface Product {
@@ -23,7 +24,8 @@ export interface Product {
     description: string,
     pricePerUnit: number,
     stockQuantity: number,
-    imageUrl: string
+    imageUrl: string,
+    active: boolean,
     category: Category,
     seller: User
 }

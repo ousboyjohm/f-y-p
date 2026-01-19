@@ -2,7 +2,11 @@ import '../components/hero.css';
 import { Link } from "react-router-dom";
 
   // This is the component responsible for displaying the hero section on the landing page.
-  
+/**
+ * Hero section matching the modern, soft, and elevated style of LandingPage.
+ * Uses translucent overlays and rounded corners for depth,
+ * large bold fonts, blue gradients and clear call-to-action.
+ */
 export default function Hero() {
 
   return (

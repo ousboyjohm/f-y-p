@@ -6,11 +6,21 @@
   <component name="ChangeListManager">
     <list default="true" id="350db370-b4ee-4fb0-96ff-363744d7a263" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../DFMP_FRONTEND/dfmp_react/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/../DFMP_FRONTEND/dfmp_react/package-lock.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../DFMP_FRONTEND/dfmp_react/src/components/AddCategory.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/../DFMP_FRONTEND/dfmp_react/src/components/AddCategory.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../DFMP_FRONTEND/dfmp_react/src/components/AddProduct.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/../DFMP_FRONTEND/dfmp_react/src/components/AddProduct.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../DFMP_FRONTEND/dfmp_react/src/components/Cart.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/../DFMP_FRONTEND/dfmp_react/src/components/Cart.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../DFMP_FRONTEND/dfmp_react/src/components/Hero.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/../DFMP_FRONTEND/dfmp_react/src/components/Hero.tsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../DFMP_FRONTEND/dfmp_react/src/components/Sidebar.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/../DFMP_FRONTEND/dfmp_react/src/components/Sidebar.tsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../DFMP_FRONTEND/dfmp_react/src/models/modelTypes.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../DFMP_FRONTEND/dfmp_react/src/models/modelTypes.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../DFMP_FRONTEND/dfmp_react/src/pages/AdminDashboard.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/../DFMP_FRONTEND/dfmp_react/src/pages/AdminDashboard.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../DFMP_FRONTEND/dfmp_react/src/pages/CustomerDashboard.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/../DFMP_FRONTEND/dfmp_react/src/pages/CustomerDashboard.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../DFMP_FRONTEND/dfmp_react/src/pages/LandingPage.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/../DFMP_FRONTEND/dfmp_react/src/pages/LandingPage.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../DFMP_FRONTEND/dfmp_react/src/pages/ProductDetail.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/../DFMP_FRONTEND/dfmp_react/src/pages/ProductDetail.tsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../DFMP_FRONTEND/dfmp_react/src/pages/ProductListing.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/../DFMP_FRONTEND/dfmp_react/src/pages/ProductListing.tsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../DFMP_FRONTEND/dfmp_react/src/pages/SellerDashboard.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/../DFMP_FRONTEND/dfmp_react/src/pages/SellerDashboard.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../DFMP_FRONTEND/dfmp_react/src/pages/SignIn.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/../DFMP_FRONTEND/dfmp_react/src/pages/SignIn.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../DFMP_FRONTEND/dfmp_react/src/pages/SignUp.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/../DFMP_FRONTEND/dfmp_react/src/pages/SignUp.tsx" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -77,7 +87,7 @@
         <line-breakpoint enabled="true" type="java-method">
           <url>file://$PROJECT_DIR$/src/main/java/org/example/Controllers/CartController.java</url>
           <line>37</line>
-          <properties class="org.example.Controllers.CartController">
+          <properties class="org.example.Controllers.CartController" method="addCart">
             <option name="EMULATED" value="true" />
             <option name="WATCH_EXIT" value="false" />
           </properties>

@@ -1,118 +1,147 @@
 import Navbar from "../components/Navbar";
-// import Sidebar from "../components/Sidebar";
 import ProductCard from "../components/ProductCard";
-import { useEffect, useState } from "react";
+import { useEffect, useState, useCallback } from "react";
 import axios from "axios";
 import type { Product } from "../models/modelTypes";
 import Sidebar from "../components/Sidebar";
 
-// This is the page that lists all the products for shopping. It uses the ProductCard component to display
-// The products in a cart format. When a product is clicked, it takes you to the ProductDetail page.
-// It has pagination for making the products into pages.
-
-
+/**
+ * Shop: Matches LandingPage style with sidebar filter/sort logic
+ * Filters and sorting are applied client-side (since backend does not currently support query params).
+ */
 export default function Shop() {
-
   const [products, setProducts] = useState<Product[]>([]);
+  const [filtered, setFiltered] = useState<Product[]>([]);
   const [currentPage, setCurrentPage] = useState(1);
-  const totalPerPage = 8;
-  const firstIndex = (currentPage -1) * totalPerPage;
-  const lastIndex = firstIndex + totalPerPage;
-  const numOfPages = Math.ceil(products.length / totalPerPage);
-  const pageNumbers = Array.from({ length: numOfPages }, (_, i) => i + 1);
 
-  // const [loading, setLoading] = useState(true);
-  // const [error, setError] = useState("");
+  // These keep track of filter and sort selected in sidebar
+  const [selectedCategories, setSelectedCategories] = useState<string[]>([]);
+  const [sortOption, setSortOption] = useState("default");
+
+  const totalPerPage = 8;
   const API_URL = import.meta.env.VITE_API_URL;
 
+  // Fetch ALL products from backend one time on mount
   useEffect(() => {
-      const fetchFeaturedProducts = async () => {
-        try {
-          const response = await axios.get(`${API_URL}/products`);
-          setProducts(response.data);
-        } catch (err) {
-          // setError("Failed to load featured products");
-        } finally {
-          // setLoading(false);
-        }
-      };
-  
-      fetchFeaturedProducts();
-    }, []);
+    const fetchAll = async () => {
+      try {
+        const resp = await axios.get(`${API_URL}/products`);
+        setProducts(resp.data);
+      } catch (err) {}
+    };
+    fetchAll();
+  }, [API_URL]);
 
+  // When products/filter/sort change, update current page of products
+  useEffect(() => {
+    let arr = [...products];
+    // Filter by category (sidebar sends only the user-checked ones)
+    if (selectedCategories.length !== 0) {
+      arr = arr.filter(
+        (p) => p.category && selectedCategories.includes(p.category.name)
+      );
+    }
+    // Sort option
+    if (sortOption === "price-asc") {
+      arr.sort((a, b) => a.pricePerUnit - b.pricePerUnit);
+    } else if (sortOption === "price-desc") {
+      arr.sort((a, b) => b.pricePerUnit - a.pricePerUnit);
+    }
+    setFiltered(arr);
+    setCurrentPage(1); // Whenever filter/sort changes, reset to pg1
+  }, [products, selectedCategories, sortOption]);
 
-//   const fetchProducts = async (filters: { categories: string[], sort: string }) => {
-//    const query = new URLSearchParams();
+  // Pagination vars (filtered is always the array being paginated)
+  const firstIndex = (currentPage - 1) * totalPerPage;
+  const lastIndex = firstIndex + totalPerPage;
+  const pageProducts = filtered.slice(firstIndex, lastIndex);
+  const numOfPages = Math.max(1, Math.ceil(filtered.length / totalPerPage));
+  const pageNumbers = Array.from({ length: numOfPages }, (_, i) => i + 1);
 
-//    if (filters.categories.length > 0)
-//       query.append("category", filters.categories.join(","));
-
-//    if (filters.sort !== "default")
-//       query.append("sort", filters.sort);
-
-//    const res = await axios.get(`${API_URL}/products?${query.toString()}`);
-//    setProducts(res.data);
-// };
-
+  // Callback for the sidebar to tell us what the user selected
+  const handleSidebarFilter = useCallback(
+    (filters: { categories: string[]; sort: string }) => {
+      setSelectedCategories(filters.categories);
+      setSortOption(filters.sort);
+    },
+    []
+  );
 
   return (
     <>
       <Navbar />
-      <div className="pt-10 flex">
+      <main className="pt-24 bg-gradient-to-b from-blue-50 via-white to-blue-100 min-h-screen">
+        <div className="max-w-7xl mx-auto flex px-2 sm:px-4 relative">
+          <Sidebar
+            role="shop"
+            onFilterChange={handleSidebarFilter}
+          />
+          <section className="flex-1 ml-0 md:ml-64 py-12 px-1 md:px-10 transition-all">
+            <h1 className="text-4xl md:text-5xl font-extrabold mb-8 text-blue-900 tracking-tight underline decoration-blue-400 decoration-2 underline-offset-4">
+              Shop
+            </h1>
 
-        {/* <Sidebar role="shop" onFilterChange={(filters) => {
-          fetchProducts(filters);
-        }}/> */}
-        <Sidebar role="shop"  />
+            <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-8">
+              {pageProducts.map((product) => (
+                <ProductCard
+                  key={product.id}
+                  id={product.id}
+                  name={product.name}
+                  price={product.pricePerUnit}
+                  image={product.imageUrl}
+                />
+              ))}
+              {pageProducts.length === 0 && (
+                <div className="col-span-4 text-center text-lg text-blue-700 py-16 bg-white bg-opacity-80 rounded-xl shadow">
+                  No products found for these filters.
+                </div>
+              )}
+            </div>
 
-        <main className="flex-1  px-6 py-12"> {/*ml-64*/}
-          <h1 className="text-3xl font-bold mb-6 text-gray-800">Shop</h1>
-
-          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
-            {products.slice(firstIndex, lastIndex).map((product) => (
-              <ProductCard
-                key={product.id}
-                id={product.id}
-                name={product.name}
-                price={product.pricePerUnit}
-                image={product.imageUrl}
-              />
-            ))}
-          </div>
-
-            {/* This part handles the pagination */}
-          <div className="flex justify-center mt-8 space-x-2">
-            <button
-                onClick={() => setCurrentPage(currentPage-1)}
+            {/* Pagination controls */}
+            <div className="flex justify-center mt-12 space-x-1">
+              <button
+                onClick={() => setCurrentPage((p) => p - 1)}
                 disabled={currentPage === 1}
-                className={`px-3 py-1 border rounded 
-                  ${currentPage === 1 ? "opacity-50 cursor-not-allowed" : "hover:bg-blue-100"}
-                `}
-                >
+                className={`px-4 py-2 rounded-full border font-semibold transition-all
+                  ${currentPage === 1
+                    ? "opacity-50 cursor-not-allowed bg-gray-100"
+                    : "bg-white hover:bg-blue-200 border-blue-300 text-blue-900 shadow"
+                  }`}
+              >
                 Prev
-            </button>
-
-            {pageNumbers.map((page) => (
-              <button key={page}
-                      onClick={() => setCurrentPage(page)} 
-                      className={`px-3 py-1 border rounded
-                        ${currentPage === page 
-                          ? "bg-blue-900 text-white" 
-                          : "hover:bg-blue-100"
-                        }
-                      `}>
-                        {page}
-                        </button>
-            ))}
-            <button
-             onClick={() => setCurrentPage(currentPage+1)}
-              disabled={currentPage === numOfPages}
-      className={`px-3 py-1 border rounded 
-        ${currentPage === numOfPages ? "opacity-50 cursor-not-allowed" : "hover:bg-blue-100"}
-      `}>Next</button>
-          </div>
-        </main>
-      </div>
+              </button>
+              {pageNumbers.map((page) => (
+                <button
+                  key={page}
+                  onClick={() => setCurrentPage(page)}
+                  className={`w-10 h-10 mx-0.5 rounded-full border font-bold 
+                    text-lg transition-all
+                    ${currentPage === page
+                      ? "bg-blue-900 text-white border-blue-900 shadow-lg"
+                      : "bg-white border-blue-100 text-blue-900 hover:bg-blue-100"
+                    }
+                  `}
+                  aria-current={currentPage === page ? "page" : undefined}
+                >
+                  {page}
+                </button>
+              ))}
+              <button
+                onClick={() => setCurrentPage((p) => p + 1)}
+                disabled={currentPage === numOfPages}
+                className={`px-4 py-2 rounded-full border font-semibold transition-all
+                  ${currentPage === numOfPages
+                    ? "opacity-50 cursor-not-allowed bg-gray-100"
+                    : "bg-white hover:bg-blue-200 border-blue-300 text-blue-900 shadow"
+                  }`}
+              >
+                Next
+              </button>
+            </div>
+          </section>
+        </div>
+      </main>
     </>
   );
 }
