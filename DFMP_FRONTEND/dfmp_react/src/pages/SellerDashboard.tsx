@@ -17,15 +17,15 @@ function formatDate(date: string | Date) {
   return d.toLocaleDateString(undefined, { day: "numeric", month: "short" });
 }
 
-function getOrdersWithinDays(orders: OrderItem[], days: number): OrderItem[] {
-  const now = new Date();
-  return orders.filter(item => {
-    if (!item.order?.orderDate) return false;
-    const orderDate = new Date(item.order.orderDate);
-    const diffDays = (now.getTime() - orderDate.getTime()) / (1000 * 60 * 60 * 24);
-    return diffDays < days;
-  });
-}
+// function getOrdersWithinDays(orders: OrderItem[], days: number): OrderItem[] {
+//   const now = new Date();
+//   return orders.filter(item => {
+//     if (!item.order?.orderDate) return false;
+//     const orderDate = new Date(item.order.orderDate);
+//     const diffDays = (now.getTime() - orderDate.getTime()) / (1000 * 60 * 60 * 24);
+//     return diffDays < days;
+//   });
+// }
 
 export default function SellerDashboard() {
   const [partToDisplay, setpartToDisplay] = useState("Dashboard");

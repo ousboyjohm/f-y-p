@@ -3,7 +3,7 @@ import { FiEdit, FiTrash2, FiPlus } from "react-icons/fi";
 import Sidebar from "../components/Sidebar";
 import axios from "axios";
 import { useEffect, useState } from "react";
-import { useLocation, useNavigate } from "react-router-dom";
+import { useLocation } from "react-router-dom";
 import type { Order, OrderItem, Product, User } from "../models/modelTypes";
 
 type ModalType =
@@ -19,7 +19,7 @@ export default function AdminDashboard() {
     "Dashboard" | "Users" | "Products" | "Orders"
   >("Dashboard");
   const location = useLocation();
-  const navigate = useNavigate();
+  // const navigate = useNavigate();
 
   const [products, setProducts] = useState<Product[]>([]);
   const [users, setUsers] = useState<User[]>([]);

@@ -115,7 +115,7 @@ export default function CustomerDashboard() {
   const [orders, setOrder] = useState<Order[]>([]);
   const [orderItem, setOrderItem] = useState<OrderItem[]>([]);
   const [recentOrders, setRecentOrders] = useState<Order[]>([]);
-  const [selectedOrder, setSelectedOrder] = useState<Order | null>(null);
+  // const [selectedOrder, setSelectedOrder] = useState<Order | null>(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState("");
   const [profile, setProfile] = useState<any>(null);

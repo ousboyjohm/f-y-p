@@ -4,10 +4,10 @@ import type { ReactNode } from "react";
 import {
   FaUserCircle,
   FaBoxOpen,
-  FaShoppingCart,
+  // FaShoppingCart,
   FaUserCog,
   FaUsers,
-  FaListUl,
+  // FaListUl,
   FaLayerGroup,
   FaClipboardList,
   FaSortAmountUpAlt,
@@ -51,7 +51,7 @@ export default function Sidebar({
   onCustomerSectionChange,
   error,
   customerError,
-  ...rest // absorb unrecognized props like onNavigate, current, etc.
+  // ...rest  absorb unrecognized props like onNavigate, current, etc.
 }: SidebarProps) {
   const [selectedCategories, setSelectedCategories] = useState<string[]>([]);
   const [sortOption, setSortOption] = useState("default");
