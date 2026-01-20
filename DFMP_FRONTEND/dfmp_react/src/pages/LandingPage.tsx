@@ -33,10 +33,10 @@ export default function LandingPage() {
   }, []);
 
   const categories = [
-    { name: "Fish", img: "pexels-mali-229789.jpg" },
-    { name: "Prawns", img: "sebastien-devocelle-RnjSj-m6PSg-unsplash.jpg" },
-    { name: "Crabs", img: "engin-akyurt-qP8zLRp4uf0-unsplash.jpg" },
-    { name: "Lobsters", img: "chad-montgomery-ULq-CC_Q7iY-unsplash.jpg" },
+    { name: "Fish", img: "barbel_whole.jpg" },
+    { name: "Prawns", img: "abalone_fresh.jpg" },
+    { name: "Crabs", img: "crab_meat_lump.jpg" },
+    { name: "Lobsters", img: "lobster_whole.jpg" },
   ];
 
   const benefits = [

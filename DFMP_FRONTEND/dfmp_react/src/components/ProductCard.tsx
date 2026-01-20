@@ -25,7 +25,7 @@ export default function ProductCard({ id, name, price, image }: ProductCardProps
                 {name}
             </h3>
 
-            <p className="text-blue-900 font-bold mt-1">D{price}</p>
+            <p className="text-blue-900 font-bold mt-1">D{price} /kg</p>
             </Link>
 
             <Link to={`/product/${id}`}>

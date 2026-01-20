@@ -93,8 +93,8 @@ export default function Cart() {
                 <tr className="bg-blue-100 text-blue-900 uppercase text-sm tracking-wider">
                   {/* <th className="py-3 px-4 ">Image</th> */}
                   <th className="py-4 px-4">Product Name</th>
-                  <th className="py-4 px-4 text-center">Price</th>
-                  <th className="py-4 px-4 text-center">Quantity</th>
+                  <th className="py-4 px-4 text-center">Price /kg</th>
+                  <th className="py-4 px-4 text-center">Quantity (kg)</th>
                   <th className="py-4 px-4 text-center">Total</th>
                   <th className="py-4 px-4 text-center">Action</th>
                 </tr>
@@ -133,7 +133,7 @@ export default function Cart() {
                         </div>
                       </td>
                       <td className="py-4 px-4 text-center font-bold text-blue-900">
-                        D{item.quantity * item.product.pricePerUnit}
+                        D{item.quantity * item.product.pricePerUnit} 
                       </td>
                       <td className="py-4 px-4 text-center">
                         <button

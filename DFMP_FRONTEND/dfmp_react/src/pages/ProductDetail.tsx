@@ -63,9 +63,9 @@ export default function ProductDetail() {
 
   // MOCK: Related products (in a real scenario, could filter by category, or fetch from backend!)
   const relatedProducts = [
-    { id: 1, name: "Tilapia", price: 250, image: "chad-montgomery-ULq-CC_Q7iY-unsplash.jpg" },
-    { id: 2, name: "Crab", price: 500, image: "sebastien-devocelle-RnjSj-m6PSg-unsplash.jpg" },
-    { id: 3, name: "Lobster", price: 1200, image: "pexels-mali-229789.jpg" },
+    { id: 1, name: "Tilapia", price: 250, image: "barbel_whole.jpg" },
+    { id: 2, name: "Crab", price: 500, image: "crab_meat_lump.jpg" },
+    { id: 3, name: "Lobster", price: 1200, image: "lobster_whole.jpg" },
   ];
 
   const increaseQty = () => setQuantity((prev) => prev + 1);
@@ -105,7 +105,7 @@ export default function ProductDetail() {
               <div className="bg-white bg-opacity-90 rounded-3xl shadow-lg p-8 transition-all">
                 <h1 className="text-4xl font-extrabold text-blue-900 mb-3">{product?.name}</h1>
                 <div className="mb-4">
-                  <span className="text-2xl font-bold text-blue-700">D{product?.pricePerUnit}</span>
+                  <span className="text-2xl font-bold text-blue-700">D{product?.pricePerUnit} /kg</span>
                   {product?.category?.name && (
                     <span className="ml-4 px-3 py-1 bg-blue-100 text-blue-900 rounded-full text-xs font-semibold">
                       {product.category.name}
@@ -122,7 +122,7 @@ export default function ProductDetail() {
                   >
                     –
                   </button>
-                  <span className="text-blue-900 font-bold text-lg">{quantity}</span>
+                  <span className="text-blue-900 font-bold text-lg">{quantity} kg</span>
                   <button
                     onClick={increaseQty}
                     className="inline-flex items-center justify-center w-9 h-9 rounded-full bg-blue-100 text-blue-900 text-lg font-bold hover:bg-blue-200"
