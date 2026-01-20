@@ -25,6 +25,7 @@ public class User {
     private String role;
     private String address;
     private String phoneNumber;
+    private boolean active;
 
 //    @OneToMany(mappedBy = "seller")
 //    private List<Product> products;

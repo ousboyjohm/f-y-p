@@ -25,6 +25,7 @@ public class Product {
     private BigDecimal pricePerUnit;
     private double stockQuantity;
     private String imageUrl;
+    private boolean active;
     @ManyToOne
     @JoinColumn(name = "category_id")
     private Category category;

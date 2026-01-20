@@ -52,6 +52,7 @@ public class UserService {
         if(existingUserOpt.isPresent()){
             existingUser = existingUserOpt.get();
             existingUser.setName(user.getName());
+            existingUser.setActive(user.isActive());
             existingUser.setAddress(user.getAddress());
             existingUser.setPassword(user.getPassword());
             existingUser.setUsername(user.getUsername());

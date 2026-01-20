@@ -87,28 +87,28 @@ function OrderProgress({ order }: { order: Order }) {
   );
 }
 
-function ProfileCard({ profile }: { profile: any }) {
-  if (!profile) return null;
-  return (
-    <div className="bg-gradient-to-tr from-blue-100 via-white to-blue-200 rounded-2xl shadow-lg p-7 flex flex-col items-center border border-blue-100 mb-10">
-      <div className="relative">
-        <img
-          src="/avatar-placeholder.png"
-          className="w-24 h-24 rounded-full border-4 border-white shadow-lg"
-          alt="profile"
-        />
-        <div className="absolute bottom-2 right-2 w-4 h-4 bg-green-400 border-2 border-white rounded-full"></div>
-      </div>
-      <h2 className="font-semibold text-xl text-blue-900 mt-5 mb-1 tracking-tight">
-        {profile.name}
-      </h2>
-      <p className="text-sm text-gray-500 mb-1">{profile.email}</p>
-      <p className="text-xs text-blue-800 font-medium">
-        Joined: {new Date(profile.createdAt).toLocaleDateString()}
-      </p>
-    </div>
-  );
-}
+// function ProfileCard({ profile }: { profile: any }) {
+//   if (!profile) return null;
+//   return (
+//     <div className="bg-gradient-to-tr from-blue-100 via-white to-blue-200 rounded-2xl shadow-lg p-7 flex flex-col items-center border border-blue-100 mb-10">
+//       <div className="relative">
+//         <img
+//           src="/avatar-placeholder.png"
+//           className="w-24 h-24 rounded-full border-4 border-white shadow-lg"
+//           alt="profile"
+//         />
+//         <div className="absolute bottom-2 right-2 w-4 h-4 bg-green-400 border-2 border-white rounded-full"></div>
+//       </div>
+//       <h2 className="font-semibold text-xl text-blue-900 mt-5 mb-1 tracking-tight">
+//         {profile.name}
+//       </h2>
+//       <p className="text-sm text-gray-500 mb-1">{profile.email}</p>
+//       <p className="text-xs text-blue-800 font-medium">
+//         Joined: {new Date(profile.createdAt).toLocaleDateString()}
+//       </p>
+//     </div>
+//   );
+// }
 
 export default function CustomerDashboard() {
   const [partToDisplay, setpartToDisplay] = useState("Dashboard");
@@ -200,7 +200,7 @@ export default function CustomerDashboard() {
           {loading ? (
             <div className="flex justify-center items-center min-h-[60vh]">
               <div className="text-xl text-blue-900 font-medium">
-                Loading your dashboard...
+                Loading...
               </div>
             </div>
           ) : error ? (
@@ -211,9 +211,9 @@ export default function CustomerDashboard() {
                 <>
                   {/* Profile and Stats Card */}
                   <div className="grid grid-cols-1 gap-0 md:grid-cols-3 md:gap-7 mb-12">
-                    <div>
+                    {/* <div>
                       <ProfileCard profile={profile} />
-                    </div>
+                    </div> */}
                     <div className="col-span-2 flex flex-col items-stretch justify-between">
                       <h1 className="text-4xl font-black text-blue-950 mb-8 tracking-tight drop-shadow-blue">
                         Welcome{profile?.name ? `, ${profile.name}` : ""}.

@@ -45,6 +45,7 @@ public class ProductService {
         if(existingProductOpt.isPresent()){
             existingProduct = existingProductOpt.get();
             existingProduct.setName(product.getName());
+            existingProduct.setActive(product.isActive());
             existingProduct.setDescription(product.getDescription());
             existingProduct.setPricePerUnit(product.getPricePerUnit());
             existingProduct.setStockQuantity(product.getStockQuantity());

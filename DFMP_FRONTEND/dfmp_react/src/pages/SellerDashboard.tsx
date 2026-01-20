@@ -27,6 +27,11 @@ function formatDate(date: string | Date) {
 //   });
 // }
 
+type ModalType =
+  | null
+  | { type: "user" | "product" | "order"; data: any }
+
+
 export default function SellerDashboard() {
   const [partToDisplay, setpartToDisplay] = useState("Dashboard");
   const location = useLocation();
@@ -38,6 +43,7 @@ export default function SellerDashboard() {
   const [newBulkDiscount, setNewBulkDiscount] = useState<BulkDiscount>({ minQuantity: 10, discountPercent: 5 });
   
   const [currentPage, setCurrentPage] = useState(1);
+  const [modal, setModal] = useState<ModalType>(null);
   const totalPerPage = 7;
   const firstIndex = (currentPage - 1) * totalPerPage;
   const lastIndex = firstIndex + totalPerPage;
@@ -48,7 +54,7 @@ export default function SellerDashboard() {
   const [uniqueOrders, setUniqueOrders] = useState<Order[]>([]);
   const [salesView, setSalesView] = useState<"weekly" | "monthly">("weekly");
 
-  // Fetch products and related order items for this seller
+  // This fetches products and related order items for the seller
   useEffect(() => {
     const seller = sessionStorage.getItem("userId");
     if (location.state?.section) setpartToDisplay(location.state.section);
@@ -72,11 +78,114 @@ export default function SellerDashboard() {
           if (item.order) ordersMap.set(item.order.id, item.order);
         });
         setUniqueOrders(Array.from(ordersMap.values()));
-      } catch { /* no-op error */ }
+      } catch {  }
     };
     fetchAll();
   // eslint-disable-next-line
   }, [location.state]);
+
+    const handleOrderDelete = async (order: Order) => {
+      if (!window.confirm("Delete this order?")) return;
+      try {
+        const res = await axios.post(`${API_URL}/carts/customer`, { id: order.customer.id });
+        const res1 = await axios.post(`${API_URL}/order-items/order`, { id: order.id });
+        await axios.delete(`${API_URL}/carts/${res.data.id}`);
+        await axios.delete(`${API_URL}/order-items/${res1.data[0].order.id}`);
+        await axios.delete(`${API_URL}/order/${order.id}`);
+        // await axios.delete(`${API_URL}/users/${order.customer.id}`);
+        setOrders(orders => orders.filter(order => order.id !== order.id));
+      } catch (err) {
+        alert("Failed to delete order.");
+        console.error(err);
+      }
+    };
+
+    function EditModal() {
+        if (!modal) return null;
+    
+        // ==== Default: Edit Modals for existing objects! ====
+        const { type, data } = modal;
+        const [form, setForm] = useState<any>(data);
+    
+        const handleInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>) => {
+          const { name, value } = e.target;
+          setForm({ ...form, [name]: value });
+        };
+    
+        const handleSave = async () => {
+          try {
+            if (type === "order") {
+              await axios.put(`${API_URL}/order/${form.id}`, { orderStatus: form.orderStatus, ...form });
+              setOrders(orders =>
+                orders.map(o =>
+                  o.id === form.id ? { ...o, orderStatus: form.orderStatus } : o
+                )
+              );
+            }
+            setModal(null);
+          } catch (e) {
+            alert("Update failed. Please try again.");
+            console.error(e);
+          }
+        };
+    
+        return (
+          <div className="fixed inset-0 bg-black bg-opacity-30 flex items-center justify-center z-40">
+            <div className="bg-white p-6 rounded shadow-lg min-w-[320px] max-w-sm">
+              <h2 className="text-xl mb-3">
+                Edit {type[0].toUpperCase() + type.slice(1)}
+              </h2>
+              <form
+                onSubmit={e => {
+                  e.preventDefault();
+                  handleSave();
+                }}
+                className="flex flex-col gap-4"
+              >
+                {type === "order" && (
+                  <>
+                    <input
+                      className="border rounded px-2 py-1"
+                      name="id"
+                      value={form.id}
+                      onChange={handleInputChange}
+                      disabled
+                    />
+                    <select
+                      name="orderStatus"
+                      className="border rounded px-2 py-1"
+                      value={form.orderStatus}
+                      onChange={handleInputChange}
+                    >
+                      <option value="PENDING">Pending</option>
+                      <option value="PROCESSING">Processing</option>
+                      <option value="SHIPPED">Shipped</option>
+                      <option value="DELIVERED">Delivered</option>
+                      <option value="CANCELLED">Cancelled</option>
+                    </select>
+                  </>
+                )}
+                <div className="flex gap-2 mt-3">
+                  <button
+                    type="submit"
+                    className="px-4 py-1 bg-blue-900 text-white rounded hover:bg-blue-800"
+                  >
+                    Save
+                  </button>
+                  <button
+                    type="button"
+                    className="px-4 py-1 bg-gray-200 rounded"
+                    onClick={() => setModal(null)}
+                  >
+                    Cancel
+                  </button>
+                </div>
+              </form>
+            </div>
+          </div>
+        );
+      }
+    
 
   // Bulk discount config modal helpers
   const openBulkConfig = (productId: number) => {
@@ -171,13 +280,14 @@ export default function SellerDashboard() {
   return (
     <>
       <Navbar />
+      {modal && <EditModal />}
       <div className="pt-8 flex min-h-screen bg-gradient-to-r from-blue-50/70 via-white to-blue-100">
         <Sidebar
           role="seller"
         />
 
         <main className="flex-1 ml-64 px-7 py-12">
-          {/* --- Dashboard redesigned --- */}
+          
           {partToDisplay === "Dashboard" && (
             <>
               <div className="flex flex-col md:flex-row md:items-center md:justify-between mb-8 gap-4">
@@ -240,7 +350,6 @@ export default function SellerDashboard() {
                 </div>
               </section>
 
-              {/* Sales metrics chart */}
               <section className="bg-white rounded-xl shadow mb-12 px-0 py-8 flex flex-col items-stretch">
                 <h2 className="text-xl font-bold text-blue-800 text-center -mt-3 mb-5">Your Daily Sales This Week</h2>
                 <div className="w-full px-2">
@@ -458,11 +567,13 @@ export default function SellerDashboard() {
                           <td className="py-3 px-4 space-x-2">
                             <button
                               title="See Details"
+                              onClick={() => setModal({ type: "order", data: order })}
                               className="text-blue-700 hover:text-blue-600 cursor-pointer">
                                 <FiEdit size={20}/>
                             </button>
                             <button
                               title="Delete"
+                              onClick={() => handleOrderDelete(order)}
                               className="text-red-600 hover:text-red-800 cursor-pointer">
                                 <FiTrash2 size={20}/>
                             </button>

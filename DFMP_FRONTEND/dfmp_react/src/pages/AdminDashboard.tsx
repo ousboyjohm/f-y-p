@@ -14,6 +14,13 @@ type ModalType =
 
 const PAGE_SIZE = 7;
 
+const CATEGORY_OPTIONS = [
+  { id: 1, label: "Fish" },
+  { id: 2, label: "Prawns" },
+  { id: 3, label: "Crabs" },
+  { id: 4, label: "Lobsters" },
+];
+
 export default function AdminDashboard() {
   const [partToDisplay, setPartToDisplay] = useState<
     "Dashboard" | "Users" | "Products" | "Orders"
@@ -77,7 +84,7 @@ export default function AdminDashboard() {
     setCurrentPage(1); // Reset page on location/section change
   }, [location.state]);
 
-  // Resets pagination when changing section
+
   useEffect(() => {
     setCurrentPage(1);
   }, [partToDisplay]);
@@ -92,7 +99,7 @@ export default function AdminDashboard() {
     return Array.from({ length: Math.ceil(dataLength / PAGE_SIZE) }, (_, i) => i + 1);
   };
 
-  // =================== Delete Handlers ===================
+
   const handleUserDelete = async (id: number) => {
     if (!window.confirm("Delete this user?")) return;
     try {
@@ -116,24 +123,23 @@ export default function AdminDashboard() {
     }
   };
 
-  const handleOrderDelete = async (id: number) => {
-    if (!window.confirm("Delete this order?")) return;
-    try {
-      await axios.delete(`${API_URL}/order/${id}`);
-      setOrders(orders => orders.filter(order => order.id !== id));
-    } catch (err) {
-      alert("Failed to delete order.");
-      console.error(err);
-    }
-  };
+  // const handleOrderDelete = async (id: number) => {
+  //   if (!window.confirm("Delete this order?")) return;
+  //   try {
+  //     await axios.delete(`${API_URL}/order/${id}`);
+  //     setOrders(orders => orders.filter(order => order.id !== id));
+  //   } catch (err) {
+  //     alert("Failed to delete order.");
+  //     console.error(err);
+  //   }
+  // };
 
-  // =================== Activation Handlers ===================
-  // User activation/deactivation (toggle active)
-  const handleUserStatusToggle = async (id: number, active: boolean) => {
+
+  const handleUserStatusToggle = async (user: User, active: boolean) => {
     try {
-      await axios.patch(`${API_URL}/users/${id}`, { active: !active });
+      await axios.put(`${API_URL}/users/${user.id}`, {...user, active: !active });
       setUsers(users =>
-        users.map(u => (u.id === id ? { ...u, active: !active } : u))
+        users.map(u => (u.id === user.id ? { ...u, active: !active } : u))
       );
     } catch (error) {
       alert("Failed to change user status.");
@@ -141,11 +147,11 @@ export default function AdminDashboard() {
   };
 
   // Product activation/deactivation (toggle active)
-  const handleProductStatusToggle = async (id: number, active: boolean) => {
+  const handleProductStatusToggle = async (product: Product, active: boolean) => {
     try {
-      await axios.patch(`${API_URL}/products/${id}`, { active: !active });
+      await axios.put(`${API_URL}/products/${product.id}`, {...product, active: !active });
       setProducts(products =>
-        products.map(p => (p.id === id ? { ...p, active: !active } : p))
+        products.map(p => (p.id === product.id ? { ...p, active: !active } : p))
       );
     } catch (error) {
       alert("Failed to change product status.");
@@ -164,7 +170,9 @@ export default function AdminDashboard() {
         name: "",
         username: "",
         password: "",
-        role: "BUYER",
+        address: "",
+        phoneNumber:"",
+        role: "SELLER",
         active: true,
       });
       const [saving, setSaving] = useState(false);
@@ -182,7 +190,7 @@ export default function AdminDashboard() {
             setSaving(false);
             return;
           }
-          const res = await axios.post(`${API_URL}/users`, form);
+          const res = await axios.post(`${API_URL}/signup`, form);
           setUsers(u => [res.data, ...u]);
           setModal(null);
         } catch (e) {
@@ -217,7 +225,25 @@ export default function AdminDashboard() {
                 value={form.username}
                 onChange={handleInputChange}
                 placeholder="Email"
-                type="email"
+                type="text"
+                required
+              />
+              <input
+                className="border rounded px-2 py-1"
+                name="address"
+                value={form.address}
+                onChange={handleInputChange}
+                placeholder="Address"
+                type="text"
+                required
+              />
+              <input
+                className="border rounded px-2 py-1"
+                name="phoneNumber"
+                value={form.phoneNumber}
+                onChange={handleInputChange}
+                placeholder="phone"
+                type="text"
                 required
               />
               <input
@@ -235,7 +261,7 @@ export default function AdminDashboard() {
                 value={form.role}
                 onChange={handleInputChange}
               >
-                <option value="BUYER">Buyer</option>
+                <option value="CUSTOMER">Buyer</option>
                 <option value="SELLER">Seller</option>
               </select>
               <div className="flex gap-2 mt-3">
@@ -264,30 +290,57 @@ export default function AdminDashboard() {
       // Add Product Modal
       const [form, setForm] = useState({
         name: "",
+        description:"",
+        pricePerUnit: "",
+        stockQuantity: "",
         imageUrl: "",
-        sellerId: "",
+        category: { id: CATEGORY_OPTIONS[0].id },
+        seller: { id: users[0].id },
         active: true,
       });
       const [saving, setSaving] = useState(false);
 
-      const handleInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>) => {
-        const { name, value } = e.target;
-        setForm({ ...form, [name]: value });
+      const handleInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement | HTMLTextAreaElement>) => {
+        const { name, value } = e.target as HTMLInputElement;
+        if (name === "category") {
+          setForm((prev) => ({
+            ...prev,
+            category: { id: Number(value) },
+          }));
+          return;
+        }
+        if (name === "seller") {
+        setForm(prev => ({
+          ...prev,
+          seller: { id: Number(value) },
+        }));
+        return;
+      }
+        setForm(prev => ({ ...prev, [name]: value }));
       };
 
       const handleSave = async () => {
         setSaving(true);
         try {
-          if (!form.name || !form.imageUrl || !form.sellerId) {
+          if (!form.name || !form.imageUrl || !form.seller) {
             alert("All fields are required");
             setSaving(false);
             return;
           }
           const res = await axios.post(`${API_URL}/products`, {
             ...form,
-            sellerId: Number(form.sellerId),
+            seller: {id: Number(form.seller.id)},
           });
-          setProducts(p => [res.data, ...p]);
+           const createdProduct = res.data;
+          const fullSeller = users.find(u => u.id === form.seller.id);
+
+          setProducts(p => [
+            {
+              ...createdProduct,
+              seller: fullSeller ?? null, // ✅ FIX #2
+            },
+            ...p,
+          ]);
           setModal(null);
         } catch (e) {
           alert("Adding product failed. Please try again.");
@@ -318,6 +371,37 @@ export default function AdminDashboard() {
                 placeholder="Product Name"
                 required
               />
+                <textarea
+                  id="description"
+                  name="description"
+                  rows={3}
+                  placeholder="Description"
+                  value={form.description}
+                  onChange={handleInputChange}
+                  className="border rounded px-2 py-1"
+                  required
+                />
+                  <input
+                    id="pricePerUnit"
+                    type="number"
+                    name="pricePerUnit"
+                    min={0}
+                    value={form.pricePerUnit}
+                    onChange={handleInputChange}
+                    className="border rounded px-2 py-1"
+                    required
+                  />
+
+                  <input
+                    id="stockQuantity"
+                    type="number"
+                    name="stockQuantity"
+                    min={0}
+                    value={form.stockQuantity}
+                    onChange={handleInputChange}
+                    className="border-2 border-blue-200 rounded-lg w-full px-3 py-2 focus:ring-2 focus:ring-blue-400 focus:bg-blue-50 transition-all duration-150"
+                    required
+                  />
               <input
                 className="border rounded px-2 py-1"
                 name="imageUrl"
@@ -327,9 +411,25 @@ export default function AdminDashboard() {
                 required
               />
               <select
+                    id="category"
+                    name="category"
+                    value={form.category.id}
+                    onChange={handleInputChange}
+                    className="border rounded px-2 py-1"
+                    required
+                  >
+                    <option value="">Choose Category</option>
+                    {CATEGORY_OPTIONS.map((cat) => (
+                      <option key={cat.id} value={cat.id}>
+                        {cat.label}
+                      </option>
+                    ))}
+                  </select>
+              <select
+                id="seller"
                 className="border rounded px-2 py-1"
-                name="sellerId"
-                value={form.sellerId}
+                name="seller"
+                value={form.seller.id}
                 onChange={handleInputChange}
                 required
               >
@@ -386,7 +486,7 @@ export default function AdminDashboard() {
           );
         }
         if (type === "order") {
-          await axios.put(`${API_URL}/order/${form.id}`, { orderStatus: form.orderStatus });
+          await axios.put(`${API_URL}/order/${form.id}`, { orderStatus: form.orderStatus, ...form });
           setOrders(orders =>
             orders.map(o =>
               o.id === form.id ? { ...o, orderStatus: form.orderStatus } : o
@@ -479,7 +579,9 @@ export default function AdminDashboard() {
                   onChange={handleInputChange}
                 >
                   <option value="PENDING">Pending</option>
-                  <option value="COMPLETED">Completed</option>
+                  <option value="PROCESSING">Processing</option>
+                  <option value="SHIPPED">Shipped</option>
+                  <option value="DELIVERED">Delivered</option>
                   <option value="CANCELLED">Cancelled</option>
                 </select>
               </>
@@ -551,7 +653,7 @@ export default function AdminDashboard() {
                   </span>
                   <button
                     className={`ml-2 text-xs underline text-blue-800`}
-                    onClick={() => handleUserStatusToggle(user.id, user.active !== false)}
+                    onClick={() => handleUserStatusToggle(user, user.active !== false)}
                   >
                     {user.active !== false ? "Deactivate" : "Activate"}
                   </button>
@@ -629,7 +731,7 @@ export default function AdminDashboard() {
                   <button
                     className={`ml-2 text-xs underline text-blue-800`}
                     onClick={() =>
-                      handleProductStatusToggle(product.id, product.active !== false)
+                      handleProductStatusToggle(product, product.active !== false)
                     }
                   >
                     {product.active !== false ? "Deactivate" : "Activate"}
@@ -691,13 +793,13 @@ export default function AdminDashboard() {
                   >
                     <FiEdit size={20} />
                   </button>
-                  <button
+                  {/* <button
                     className="text-red-600 hover:underline"
                     title="Delete"
                     onClick={() => handleOrderDelete(order.id)}
                   >
                     <FiTrash2 size={20} />
-                  </button>
+                  </button> */}
                 </td>
               </tr>
             ))}
@@ -785,7 +887,7 @@ export default function AdminDashboard() {
                     onClick={() => setPartToDisplay("Orders")}>Review</div>
                 </div>
               </div>
-              {/* Activity log (example admin dashboard widget) */}
+              
               <div className="bg-white mt-6 p-6 rounded-lg shadow-lg">
                 <div className="flex justify-between items-center mb-2">
                   <h2 className="text-lg font-bold text-gray-800">Recent Admin Activities</h2>
@@ -810,7 +912,6 @@ export default function AdminDashboard() {
           {partToDisplay === "Products" && renderProductsTable()}
           {partToDisplay === "Orders" && renderOrdersTable()}
 
-          {/* PAGINATION */}
           {partToDisplay !== "Dashboard" && pageNumbers.length > 1 && (
             <div className="flex justify-center mt-8 space-x-2">
               <button
