@@ -4,16 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="350db370-b4ee-4fb0-96ff-363744d7a263" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/example/Models/OrderStatus.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/example/Models/OrderStatus.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/example/Models/Product.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/example/Models/Product.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/example/Models/User.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/example/Models/User.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/example/Services/ProductService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/example/Services/ProductService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/example/Services/UserService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/example/Services/UserService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../DFMP_FRONTEND/dfmp_react/src/pages/CustomerDashboard.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/../DFMP_FRONTEND/dfmp_react/src/pages/CustomerDashboard.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../DFMP_FRONTEND/dfmp_react/src/pages/SellerDashboard.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/../DFMP_FRONTEND/dfmp_react/src/pages/SellerDashboard.tsx" afterDir="false" />
-    </list>
+    <list default="true" id="350db370-b4ee-4fb0-96ff-363744d7a263" name="Changes" comment="" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />

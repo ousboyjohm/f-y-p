@@ -1,5 +1,6 @@
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import { HiOutlineShoppingBag, HiOutlineShoppingCart, HiOutlineHome } from "react-icons/hi";
+import { AiOutlineDashboard } from "react-icons/ai";
 // import { MdLogin, MdLogout, MdEdit, MdDelete, MdPerson, MdAdd, MdAddCircle, MdAddAPhoto } from "react-icons/md";
 // import { useState } from "react";
 import { FiLogIn, FiLogOut } from "react-icons/fi";
@@ -43,6 +44,9 @@ export default function Navbar() {
             <Link to="/cart" className="hover:underline hover:text-blue-300">
               <HiOutlineShoppingCart size={30}/>
             </Link>
+          )}
+          {location.pathname !== "/customer" && loggedIn &&(
+          <Link className="hover:text-blue-300 transition" to="/customer"><AiOutlineDashboard size={30}/></Link>
           )}
           {(location.pathname !== "/login" && location.pathname !== "/shop" && location.pathname !== "/checkout" && location.pathname !== "/cart") && !loggedIn &&(
           <Link
