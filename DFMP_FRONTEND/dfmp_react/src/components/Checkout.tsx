@@ -154,6 +154,11 @@ export default function Checkout(){
                             <input id="city" name="city" value={shippingDetails.city} onChange={handleChange} type="text" className="border rounded p-2 w-full focus:outline-none focus:ring-2 focus:ring-blue-500 border-gray-300"></input>
                         </div>
 
+                         <div>
+                            <label htmlFor="cardNumber" className="block font-medium mb-1">Card Number</label>
+                            <input id="cardNumber" type="text" className="border rounded w-full px-3 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500 border-gray-300"></input>
+                        </div>
+
                          <div> 
                             <label htmlFor="postal_code" className="font-medium block mb-1">Postal Code:</label>
                             <input id="postal_code" name="postal_code" value={shippingDetails.postal_code} onChange={handleChange} type="text" className="border rounded p-2 w-full focus:outline-none focus:ring-2 focus:ring-blue-500 border-gray-300"></input>
